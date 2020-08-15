@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "awesomefat-web": {
+    "awesome-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "root": "",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/awesomefat-web",
+            "outputPath": "dist/awesome-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,13 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.sass"
+              "src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -70,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "awesomefat-web:build"
+            "browserTarget": "awesome-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "awesomefat-web:build:production"
+              "browserTarget": "awesome-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "awesomefat-web:build"
+            "browserTarget": "awesome-web:build"
           }
         },
         "test": {
@@ -96,7 +92,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -118,15 +114,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "awesomefat-web:serve"
+            "devServerTarget": "awesome-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "awesomefat-web:serve:production"
+              "devServerTarget": "awesome-web:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "awesomefat-web"
+  "defaultProject": "awesome-web"
 }
