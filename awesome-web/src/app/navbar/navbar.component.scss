@@ -1,0 +1,34 @@
+$navbarBackgroundColor: #403933;
+$aws-font: "Comic Sans MS", "Comic Sans", cursive;
+
+.aws-navbar {
+    background-color: $navbarBackgroundColor;
+    width: 100%;
+    font-family: $aws-font;
+    color: #ffffff;
+}
+
+.aws-logo {
+    color: #ffffff;
+    &:hover {
+        color:#ffffff ;
+    }
+}
+
+.aws-nav-items {
+    .nav-link {
+        color: #ffffff;
+        &:hover, &:active {
+            background-color: darken($navbarBackgroundColor,10%);
+            border-radius: 5px;
+        }
+        @media (max-width: 989px) {
+            padding-left: 20px;
+        }
+    }  
+}
+
+.aws-hamburger-button {
+    border-color: #ffffff;
+    color: #ffffff;
+}
