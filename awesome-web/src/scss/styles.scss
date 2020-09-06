@@ -5,14 +5,7 @@
 @import "node_modules/bootstrap/scss/mixins";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/forms";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-.ng-valid {
-  &:not(.ng-untouched) {
-    @extend .is-valid
-  }
-}
-
-.ng-invalid {
-  &:not(.ng-untouched) {
-    @extend .is-invalid }
-}
+$navbarBackgroundColor: #403933;
+$aws-font:"Open Sans MS", "Open Sans", cursive;

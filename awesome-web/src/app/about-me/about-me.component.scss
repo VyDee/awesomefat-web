@@ -1,6 +1,4 @@
-$navbarBackgroundColor: #403933;
-$aws-font: "Comic Sans MS", "Comic Sans", cursive;
-
+@import "src/scss/styles.scss";
 .aws-about-me-container {
     width: 100%;
     background-color: #f2f2f2;
@@ -83,4 +81,9 @@ $aws-font: "Comic Sans MS", "Comic Sans", cursive;
     height: 300px;
     float: right;
     margin: 2%;
+}
+
+.aws-para-margin {
+    margin: 3%;
+    border: 1px solid black;
 }
