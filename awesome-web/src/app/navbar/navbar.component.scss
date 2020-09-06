@@ -6,6 +6,11 @@ $aws-font: "Open Sans MS", "Open Sans", cursive;
     font-family: $aws-font;
     color: #ffffff;
     z-index: 1;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    @media (max-width: 989px) {
+        padding: 0px;
+    }
 }
 
 .aws-logo {
@@ -16,16 +21,24 @@ $aws-font: "Open Sans MS", "Open Sans", cursive;
 }
 
 .aws-nav-items {
-    .nav-link {
+    
+    .nav-link, .dropdown-item {
         color: #ffffff;
-        &:hover, &:active {
+        font-size: 0.9em;
+        padding: 15px;
+        border: none;
+        background-color: $navbarBackgroundColor;
+        &:hover, &:active, &:focus {
             background-color: darken($navbarBackgroundColor,10%);
-            border-radius: 5px;
+            outline: none;
         }
         @media (max-width: 989px) {
             padding-left: 20px;
         }
-    }  
+    } 
+    .dropdown-menu {
+        background-color: $navbarBackgroundColor;
+    } 
 }
 
 .aws-hamburger-button {

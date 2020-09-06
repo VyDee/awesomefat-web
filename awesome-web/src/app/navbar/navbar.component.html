@@ -9,21 +9,43 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav ml-auto aws-nav-items">
+
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Our Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Our Products</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="#">About me</a>
       </li>
+      <div class="dropdown">
+        <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Services
+        </button>
+        <div class="dropdown-menu">
+          <button class="dropdown-item" type="button">Application Development</button>
+          <button class="dropdown-item" type="button">Coaching/ Consulting</button>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Review
+        </button>
+        <div class="dropdown-menu">
+          <button class="dropdown-item" type="button">Food Review</button>
+        </div>
+      </div>
       <li class="nav-item">
         <a class="nav-link" href="#">Contact Us</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Log in</a>
+      </li>
+      <!-- <div class="dropdown">
+        <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Welcome, {{name}}
+        </button>
+        <div class="dropdown-menu-right dropdown-menu">
+          <button class="dropdown-item" type="button">Action</button>
+          <button class="dropdown-item" type="button">Another action</button>
+          <button class="dropdown-item" type="button">Something else here</button>
+        </div>
+      </div> -->
     </ul>
   </div>
 </nav>
