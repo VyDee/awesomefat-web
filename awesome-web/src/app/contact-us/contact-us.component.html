@@ -1,1 +1,41 @@
-<p>contact-us works!</p>
+<div class="aws-contact-us-container aws-contact-us-header">
+    <p>Contact Us</p>
+</div>
+<div class="aws-contact-us-body">
+  <form #contactUsForm="ngForm" (ngSubmit)="onSubmit(contactUsForm)">
+    <div class="form-group form-inline">
+      <label for="firstName">First Name</label>
+      <input id="firstName" name="firstName" class="form-control w-50" [(ngModel)]="userContactMessage.firstName"
+      required type="text">
+    </div>
+    <div class="form-group form-inline">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" name="lastName" class="form-control w-50" [(ngModel)]="userContactMessage.lastName"
+      required type="text">
+    </div>
+    <div class="form-group form-inline">
+      <label for="companyName">Company Name</label>
+      <input id="companyName" name="companyName" class="form-control w-50" [(ngModel)]="userContactMessage.companyName"
+      required type="text">
+    </div>
+    <div class="form-group form-inline">
+      <label for="userEmail">Email</label>
+      <input id="userEmail" name="userEmail" class="form-control w-50" [(ngModel)]="userContactMessage.userEmail"
+      required type="email">
+    </div>
+    <div class="form-group form-inline">
+      <label for="service">Service</label>
+      <input id="service" name="service" class="form-control w-50" [(ngModel)]="userContactMessage.service"
+      required type="text">
+    </div>
+    <div class="form-group form-inline">
+      <label for="userMessage">Type a message</label>
+      <textarea class="form-control w-50" id="userMessage" name="userMessage"  rows="5" [(ngModel)]="userContactMessage.userMessage"></textarea>
+    </div>
+    <div class="aws-contactUs-submit text-center">
+      <button type="submit" class="center-block">Submit Form</button>
+    </div>
+  </form>
+</div>
+
+<h3>userSettings: {{userContactMessage | json}}</h3>

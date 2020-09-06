@@ -1,3 +1,4 @@
+import { UserContactMessage } from './../shared/user-contact-message';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
+  originalUserContactMessage: UserContactMessage = {
+    firstName: null,
+    lastName: null,
+    companyName: null,
+    userEmail: null,
+    service: null,
+    userMessage: null
+  };
+  userContactMessage: UserContactMessage = {...this.originalUserContactMessage};
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(form) {
+    console.log(form.value);
   }
 
 }

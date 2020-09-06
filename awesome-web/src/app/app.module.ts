@@ -9,6 +9,7 @@ import { appRoutes } from './routes';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
