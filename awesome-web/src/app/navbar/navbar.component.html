@@ -1,6 +1,6 @@
 <!-- Image and text -->
 <nav class="navbar navbar-expand-lg aws-navbar navbar-light">
-  <a class="navbar-brand aws-logo" href="#">
+  <a [routerLink]="['/home']" class="navbar-brand aws-logo" href="#">
     <img src="../../../assets/images/nav-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Awesome Fat
   </a>
@@ -11,15 +11,15 @@
     <ul class="navbar-nav ml-auto aws-nav-items">
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">About me</a>
+        <a class="nav-link" href="#" [routerLink]="['/about-me']">About me</a>
       </li>
       <div class="dropdown">
         <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Services
         </button>
         <div class="dropdown-menu">
-          <button class="dropdown-item" type="button">Application Development</button>
-          <button class="dropdown-item" type="button">Coaching/ Consulting</button>
+          <a class="dropdown-item">Application Development</a>
+          <a class="dropdown-item">Coaching/ Consulting</a>
         </div>
       </div>
       <div class="dropdown">
@@ -27,7 +27,7 @@
           Review
         </button>
         <div class="dropdown-menu">
-          <button class="dropdown-item" type="button">Food Review</button>
+          <a class="dropdown-item">Food Review</a>
         </div>
       </div>
       <li class="nav-item">
