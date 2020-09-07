@@ -9,8 +9,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav ml-auto aws-nav-items">
-
-      <li class="nav-item active">
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/home']">Home</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="#" [routerLink]="['/about-me']">About me</a>
       </li>
       <div class="dropdown">
@@ -34,7 +36,7 @@
         <a class="nav-link" href="#" [routerLink]="['/contact-us']">Contact Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log in</a>
+        <a class="nav-link" href="#" [routerLink]="['/log-in']">Log in</a>
       </li>
       <!-- <div class="dropdown">
         <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

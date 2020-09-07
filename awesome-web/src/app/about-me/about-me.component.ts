@@ -1,4 +1,6 @@
+import { Routes } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-about-me',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
+  currentSection = 'about-me';
 
-  constructor() { }
+  constructor(
+    private viewportScroller: ViewportScroller,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  public onSectionChange(sectionId: string) {
+    this.currentSection = sectionId;
+    console.log("onSectionChange ",sectionId);
+  }
+
+  public onClick(elementId: string): void {
+    this.currentSection = elementId;
+    this.viewportScroller.scrollToAnchor(elementId);
+}
 }

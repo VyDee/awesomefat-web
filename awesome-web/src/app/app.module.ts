@@ -10,6 +10,7 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FormsModule } from '@angular/forms';
+import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,14 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     AboutMeComponent,
     HomeComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { anchorScrolling: 'enabled'})
   ],
   providers: [],
   bootstrap: [AppComponent]

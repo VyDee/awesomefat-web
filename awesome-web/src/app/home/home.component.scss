@@ -17,11 +17,12 @@
     p{
         padding: 0% 9% 3% 9%;
     }
-    button {
+    a {
         padding: .9%;
         border-radius: 5px;
         border: none;
         background-color: $navbarBackgroundColor;
+
         color: white;
         &:hover, &:active, &:focus {
             background-color: darken($navbarBackgroundColor,10%);
@@ -32,4 +33,7 @@
 .aws-button-center-position {
     display: flex;
     justify-content: center;
+    a{
+      text-decoration: none;
+    }
 }

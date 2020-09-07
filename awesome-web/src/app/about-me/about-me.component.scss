@@ -1,11 +1,12 @@
 @import "src/scss/styles.scss";
+body{
+	position: relative; /* required */
+}
 .aws-about-me-container {
     width: 100%;
     background-color: #f2f2f2;
     font-family: $aws-font;
 }
-
-
 
 .aws-vertical-navbar {
     width:250px;
@@ -25,7 +26,7 @@
             &:active, &:hover, &:focus {
                 background-color: lighten($navbarBackgroundColor, 10%);
             }
-            
+
         }
         .list-group-item-action {
             border: none;
