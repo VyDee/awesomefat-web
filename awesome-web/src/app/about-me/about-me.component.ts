@@ -22,8 +22,9 @@ export class AboutMeComponent implements OnInit {
     console.log("onSectionChange ",sectionId);
   }
 
-  public onClick(elementId: string): void {
+  public onClick(elementId: string) {
     this.currentSection = elementId;
     this.viewportScroller.scrollToAnchor(elementId);
-}
+    console.log(this.viewportScroller.scrollToAnchor(elementId))
+  }
 }

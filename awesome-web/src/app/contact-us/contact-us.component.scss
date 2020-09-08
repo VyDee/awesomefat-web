@@ -24,27 +24,3 @@
   background-color: #403E3B;
   padding: 5%;
 }
-
-.form-group {
-  margin-bottom: 2em;
-  label {
-    color: white;
-    width: 15%;
-    display: inline-block;
-  }
-}
-
-.aws-contactUs-submit {
-  text-align: center;
-  margin-top: 5%;
-  button {
-    padding: .9%;
-    border-radius: 5px;
-    border: 1px solid white;
-    background-color: #565251;
-    color: white;
-    &:hover, &:active, &:focus {
-        background-color: darken($navbarBackgroundColor,10%);
-    }
-  }
-}

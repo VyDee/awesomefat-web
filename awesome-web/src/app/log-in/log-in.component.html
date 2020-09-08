@@ -1,10 +1,60 @@
-<div class="container">
+<div class="aws-about-me-container">
   <div class="row">
-    <div class="col">
-      1 of 2
+    <div class="col-xl-6">
+      <img src="../../../assets/images/login-background.jpg" class="aws-login-background">
     </div>
-    <div class="col">
-      2 of 2
+    <div class="col-xl-5">
+      <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+        <h3 class="aws-login-header">Sign in</h3>
+        <div class="form-group form-inline">
+          <label for="signInEmail">User Email</label>
+          <input id="signInEmail" name="signInEmail" class="form-control w-75" [(ngModel)]="userSigninInfo.email"
+          required type="text">
+        </div>
+        <div class="form-group form-inline">
+          <label for="signInPw">Password</label>
+          <input id="signInPw" name="signInPw" class="form-control w-75"  [(ngModel)]="userSigninInfo.password"
+          required type="password">
+        </div>
+        <div class="text-center aws-submit-button">
+          <button type="submit">Sign In</button>
+        </div>
+      </form>
+      <hr>
+      <form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+        <h3 class="aws-login-header">Sign up</h3>
+        <div class="form-group form-inline">
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName" class="form-control w-75" [(ngModel)]="userSignupInfo.firstName"
+          required type="text">
+        </div>
+        <div class="form-group form-inline">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" class="form-control w-75" [(ngModel)]="userSignupInfo.lastName"
+          required type="text">
+        </div>
+        <div class="form-group form-inline">
+          <label for="phoneNumber">Phone Number</label>
+          <input id="phoneNumber" name="phoneNumber" class="form-control w-75" [(ngModel)]="userSignupInfo.phoneNumber"
+          required type="tel">
+        </div>
+        <div class="form-group form-inline">
+          <label for="signUpEmail">Email</label>
+          <input id="signUpEmail" name="signUpEmail" class="form-control w-75" [(ngModel)]="userSignupInfo.email"
+          required type="email">
+        </div>
+        <div class="form-group form-inline">
+          <label for="signUpPw">Password</label>
+          <input  id="signUpPw" name="signUpPw" class="form-control w-75"  [(ngModel)]="userSignupInfo.password"
+          required type="password">
+        </div>
+        <div class="text-center aws-submit-button">
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
     </div>
   </div>
+  <!-- For Testing
+  {{userSignupInfo | json}}
+  {{userSigninInfo | json}} -->
 </div>

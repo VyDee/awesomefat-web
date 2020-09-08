@@ -35,20 +35,6 @@ body{
             background-color: lighten($navbarBackgroundColor, 10%);
         }
     }
-    // .nav-item {
-    //     list-style-type: none;
-    //     .nav-link {
-    //         text-decoration: none;
-    //         display: block;
-    //         padding: 3% 0% 3% 7%;
-    //         font-style: normal;
-    //         color: white;
-    //         background-color: lighten($navbarBackgroundColor, 15%);
-    //         &:hover, &:active, &:focus {
-    //             background-color: lighten($navbarBackgroundColor, 10%);
-    //         }
-    //     }
-    // }
     img {
         border-radius: 50%;
         width: 200px;
@@ -70,6 +56,16 @@ body{
     @media (max-width: 1060px) {
         padding-left: 260px;
     }
+    #about-me {
+      height: 5vh;
+    }
+    h2 {
+      margin-bottom: 3%;
+      font-weight: 100;
+    }
+    p {
+      padding: 0% 5% 0% 5%;
+    }
 
 }
 
@@ -85,6 +81,5 @@ body{
 }
 
 .aws-para-margin {
-    margin: 3%;
-    border: 1px solid black;
+    margin: 5%;
 }

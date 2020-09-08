@@ -15,13 +15,14 @@ $aws-font: "Open Sans MS", "Open Sans", cursive;
 
 .aws-logo {
     color: #ffffff;
-    &:hover {
+    &:hover, &:focus {
         color:#ffffff ;
+        border: none;
     }
 }
 
 .aws-nav-items {
-    
+
     .nav-link, .dropdown-item {
         color: #ffffff;
         font-size: 0.9em;
@@ -35,10 +36,10 @@ $aws-font: "Open Sans MS", "Open Sans", cursive;
         @media (max-width: 989px) {
             padding-left: 20px;
         }
-    } 
+    }
     .dropdown-menu {
         background-color: $navbarBackgroundColor;
-    } 
+    }
 }
 
 .aws-hamburger-button {

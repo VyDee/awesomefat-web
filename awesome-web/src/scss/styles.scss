@@ -9,3 +9,28 @@
 
 $navbarBackgroundColor: #403933;
 $aws-font:"Open Sans MS", "Open Sans", cursive;
+
+//use for sign in and contact us
+.form-group {
+  margin-bottom: 2em;
+  label {
+    color: white;
+    width: 15%;
+    display: inline-block;
+  }
+}
+
+.aws-submit-button {
+  text-align: center;
+  margin-top: 5%;
+  button {
+    padding: .9%;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: #565251;
+    color: white;
+    &:hover, &:active, &:focus {
+        background-color: darken($navbarBackgroundColor,10%);
+    }
+  }
+}

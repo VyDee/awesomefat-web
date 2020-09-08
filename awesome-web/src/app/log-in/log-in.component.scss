@@ -1,0 +1,23 @@
+@import "src/scss/styles.scss";
+.aws-login-background {
+    display: inline-block;
+    top: 0px;
+}
+
+.aws-about-me-container {
+  overflow-x:hidden;
+  background-color: #8C8C8C;
+  font-family: $aws-font;
+  button {
+    padding: 2% 5%;
+  }
+  hr {
+    border: 1px solid white;
+    margin: 3.5em 4em 3.5em 0em;
+  }
+}
+.aws-login-header {
+  color: white;
+  margin: 6% 0%;
+}
+
