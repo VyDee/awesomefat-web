@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 @import "~bootstrap/scss/bootstrap.scss";
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/mixins";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/forms";
+// @import "node_modules/bootstrap/scss/functions";
+// @import "node_modules/bootstrap/scss/mixins";
+// @import "node_modules/bootstrap/scss/variables";
+// @import "node_modules/bootstrap/scss/forms";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 $navbarBackgroundColor: #403933;
@@ -33,4 +33,8 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
         background-color: darken($navbarBackgroundColor,10%);
     }
   }
+}
+
+.is-invalid ~ .invalid-feedback {
+  display: contents;
 }

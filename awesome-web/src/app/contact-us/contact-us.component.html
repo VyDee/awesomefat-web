@@ -1,41 +1,73 @@
 <div class="aws-contact-us-container aws-contact-us-header">
-    <p>Contact Us</p>
+  <p>Contact Us</p>
 </div>
 <div class="aws-contact-us-body">
-  <form #contactUsForm="ngForm" (ngSubmit)="onSubmit(contactUsForm)">
-    <div class="form-group form-inline">
-      <label for="firstName">First Name</label>
-      <input id="firstName" name="firstName" class="form-control w-50" [(ngModel)]="userContactMessage.firstName"
-      required type="text">
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+  <div class="form-group form-inline">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" class="form-control w-25 is-invalid" formControlName="firstName"
+    [ngClass]="{'is-invalid': isInvalidControl('firstName')}" maxlength="35">
+    <div class="invalid-feedback" *ngIf="isInvalidControl('firstName')">
+      <div *ngIf="userForm.controls['firstName'].errors.blank">
+        Required
+      </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="lastName">Last Name</label>
-      <input id="lastName" name="lastName" class="form-control w-50" [(ngModel)]="userContactMessage.lastName"
-      required type="text">
+  </div>
+  <div class="form-group form-inline">
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" class="form-control w-25" formControlName="lastName"
+    [ngClass]="{'is-invalid': isInvalidControl('lastName')}" maxlength="35">
+    <div class="invalid-feedback" *ngIf="isInvalidControl('lastName')">
+      <div *ngIf="userForm.controls['lastName'].errors.blank">
+        Required
+      </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="companyName">Company Name</label>
-      <input id="companyName" name="companyName" class="form-control w-50" [(ngModel)]="userContactMessage.companyName"
-      required type="text">
+  </div>
+  <div class="form-group form-inline">
+    <label for="companyName">Company Name</label>
+    <input type="text" id="companyName" name="companyName" class="form-control w-50" formControlName="companyName"
+    [ngClass]="{'is-invalid': isInvalidControl('companyName')}" maxlength="80">
+    <div class="invalid-feedback" *ngIf="isInvalidControl('companyName')">
+      <div *ngIf="userForm.controls['companyName'].errors.blank">
+        Required
+      </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="userEmail">Email</label>
-      <input id="userEmail" name="userEmail" class="form-control w-50" [(ngModel)]="userContactMessage.userEmail"
-      required type="email">
+  </div>
+  <div class="form-group form-inline">
+    <label for="userEmail">Email</label>
+    <input type="email" id="userEmail" name="userEmail" class="form-control w-50" formControlName="userEmail"
+    [ngClass]="{'is-invalid': isInvalidControl('userEmail')}" maxlength="80">
+    <div class="invalid-feedback" *ngIf="isInvalidControl('userEmail')">
+      <div *ngIf="userForm.controls['userEmail'].errors.required">
+        Required
+      </div>
+      <div *ngIf="userForm.controls['userEmail'].errors.email || userForm.controls['userEmail'].errors.pattern">
+        Invalid email address
+      </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="service">Service</label>
-      <input id="service" name="service" class="form-control w-50" [(ngModel)]="userContactMessage.service"
-      required type="text">
+  </div>
+  <div class="form-group form-inline">
+    <label for="service">Service</label>
+    <input type="text" id="service" name="service" class="form-control w-50" formControlName="service"
+    [ngClass]="{'is-invalid': isInvalidControl('service')}" maxlength="8">
+    <div class="invalid-feedback" *ngIf="isInvalidControl('service')">
+      <div *ngIf="userForm.controls['service'].errors.blank">
+        Required
+      </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="userMessage">Type a message</label>
-      <textarea class="form-control w-50" id="userMessage" name="userMessage"  rows="5" [(ngModel)]="userContactMessage.userMessage"></textarea>
+  </div>
+  <div class="form-group form-inline">
+    <label for="userMessage">Type a message</label>
+    <textarea class="form-control w-50 " id="userMessage" rows="5" name="userMessage" formControlName="userMessage"
+    [ngClass]="{'is-invalid': isInvalidControl('userMessage')}" maxlength="500"></textarea>
+    <div class="invalid-feedback" *ngIf="isInvalidControl('userMessage')">
+        Required
     </div>
-    <div class="aws-submit-button text-center">
-      <button type="submit">Submit Form</button>
-    </div>
-  </form>
+  </div>
+  <div class="aws-submit-button text-center">
+    <button type="submit">Submit Form</button>
+  </div>
+</form>
 </div>
 
 <!-- <h3>userSettings: {{userContactMessage | json}}</h3> -->
