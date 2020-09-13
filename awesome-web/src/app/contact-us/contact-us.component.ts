@@ -1,3 +1,4 @@
+import { NotificationService } from './../service/notification.service';
 import { MessageService } from './../service/message.service';
 import { StringValidator } from './../validators/string.validator';
 import { UserContactMessage } from './../shared/user-contact-message';
@@ -26,7 +27,8 @@ export class ContactUsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +48,7 @@ export class ContactUsComponent implements OnInit {
           Validators.pattern(`.*@.*[.].[^0-9][a-zA-Z]`)
         ]
       ],
-      service: [this.userContactMessage.service, [StringValidator.noBlank, Validators.required, Validators.maxLength(100)]],
+      service: [this.userContactMessage.service, [StringValidator.noBlank, Validators.required]],
       userMessage: [this.userContactMessage.userMessage, [StringValidator.noBlank]]
     });
   }
@@ -56,6 +58,14 @@ export class ContactUsComponent implements OnInit {
     return(this.submitted || control.dirty) && control.invalid;
   }
 
+  private resetUserForm() {
+    this.userForm.get('firstName').reset();
+    this.userForm.get('lastName').reset();
+    this.userForm.get('companyName').reset();
+    this.userForm.get('userEmail').reset();
+    this.userForm.get('service').reset();
+    this.userForm.get('userMessage').reset();
+  }
 
 
 
@@ -80,18 +90,18 @@ export class ContactUsComponent implements OnInit {
       userMessage: values.userMessage
     };
 
-    this.messageService.sendMessage('http://localhost:3000/sendmail', request).subscribe(
+    this.messageService.sendEmail('http://localhost:3000/sendmail', request).subscribe(
       data => {
-        let res:any = data;
-        console.log(
-          `👏 > 👏 > 👏 > 👏 ${request.firstName} is successfully register and mail has been sent and the message id is ${res.messageId}`
-        );
+        console.log("messageService.sendEmail ", data);
       },
       err => {
         console.log(err);
+      }, () => {
+        window.scroll(0, 0);
+        this.notificationService.showSuccess("Email has been successfully sent");
+        this.resetUserForm();
       }
     );
-
   }
 
 }

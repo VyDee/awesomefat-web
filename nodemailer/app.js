@@ -26,13 +26,16 @@ app.post("/sendmail", (req, res) => {
   // console.log(req)
   let message = req.body;
   console.log("message", message)
-  sendMail (message)
+  sendMail (message, info => {
+    console.log(info)
+    res.send(info);
+  })
 })
 
-async function sendMail (senderMessage) {
+async function sendMail (senderMessage, callback) {
   console.log(senderMessage)
   const output = `
-  <p>You have a new contact request</p>
+  <p>You have a new customer contact request</p>
   <h3>Contact Details</h3>
   <ul>
     <li>Name: ${senderMessage.firstName}, ${senderMessage.lastName}</li>
@@ -52,9 +55,9 @@ async function sendMail (senderMessage) {
         user: 'veedee.2509@gmail.com', // generated ethereal user
         pass: 'zddyvdoveebzimgv'  // generated ethereal password
     },
-    tls:{
-      rejectUnauthorized:false
-    }
+    // tls:{
+    //   rejectUnauthorized:false
+    // }
   });
 
     // setup email data with unicode symbols
@@ -73,4 +76,6 @@ async function sendMail (senderMessage) {
     console.log('Message sent: %s', info.messageId);   
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   });
+
+  callback(info);
 }

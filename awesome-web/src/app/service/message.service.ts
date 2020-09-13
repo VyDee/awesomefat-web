@@ -5,10 +5,9 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class MessageService {
+  constructor(private http: HttpClient) { }
 
-  constructor(private _http: HttpClient) { }
-
-  sendMessage(url, data) {
-    return this._http.post(url, data);
+  sendEmail(url, data) {
+    return this.http.post(url, data);
   }
 }

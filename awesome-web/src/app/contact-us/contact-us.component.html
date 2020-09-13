@@ -49,7 +49,7 @@
   <div class="form-group form-inline">
     <label for="service">Service</label>
     <input type="text" id="service" name="service" class="form-control w-50" formControlName="service"
-    [ngClass]="{'is-invalid': isInvalidControl('service')}" maxlength="8">
+    [ngClass]="{'is-invalid': isInvalidControl('service')}" maxlength="80">
     <div class="invalid-feedback" *ngIf="isInvalidControl('service')">
       <div *ngIf="userForm.controls['service'].errors.blank">
         Required
@@ -67,6 +67,14 @@
   <div class="aws-submit-button text-center">
     <button type="submit">Submit Form</button>
   </div>
+  <!-- <div class="row">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+          <strong>Registration Success!</strong> Please click here to login!.
+
+      </p>
+    </div>
+  </div> -->
 </form>
 </div>
 

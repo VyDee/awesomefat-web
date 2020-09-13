@@ -27,25 +27,25 @@ export class AboutMeComponent implements OnInit {
   public onClick(elementId: string) {
     this.currentSection = elementId;
     this.viewportScroller.scrollToAnchor(elementId);
-    console.log(this.viewportScroller.scrollToAnchor(elementId));
+    // console.log(this.viewportScroller.scrollToAnchor(elementId));
   }
 
   @HostListener('window: scroll', ['$event'])
   onScroll() {
     //current scroll posisiton on the Y axis
-    const verticalOffset = window.pageYOffset + 100 || 0;
+    const verticalOffset = window.pageYOffset || 0;
 
     //get aws-content children
     const children = this._el.nativeElement.children[0].children[1].children;
-    console.log(">> _el.nativeElement.child[0]: ", this._el.nativeElement.children[0]);
-    console.log(">>> ..... children[1] ", this._el.nativeElement.children[0].children[1]);
-    console.log(">>> ..... children[1].children ", children);
+    // console.log(">> _el.nativeElement.child[0]: ", this._el.nativeElement.children[0]);
+    // console.log(">>> ..... children[1] ", this._el.nativeElement.children[0].children[1]);
+    // console.log(">>> ..... children[1].children ", children);
 
     for (let i = 0; i < children.length; i ++) {
       const element = children [i];
-      console.log(element);
+      // console.log(element);
 
-      console.log(element.tagName);
+      // console.log(element.tagName);
       if(element.tagName === this.spiedTag) {
         // compare element position counting from the top with the vertical offset
         if (element.offsetTop < verticalOffset) {
