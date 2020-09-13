@@ -5,7 +5,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
   <div class="form-group form-inline">
     <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName" class="form-control w-25 is-invalid" formControlName="firstName"
+    <input type="text" id="firstName" name="firstName" class="form-control w-25" formControlName="firstName"
     [ngClass]="{'is-invalid': isInvalidControl('firstName')}" maxlength="35">
     <div class="invalid-feedback" *ngIf="isInvalidControl('firstName')">
       <div *ngIf="userForm.controls['firstName'].errors.blank">

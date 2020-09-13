@@ -80,7 +80,17 @@ export class ContactUsComponent implements OnInit {
       userMessage: values.userMessage
     };
 
-    // this.messageService.sendMessage('http://localhost:3000/sendmail', request);
+    this.messageService.sendMessage('http://localhost:3000/sendmail', request).subscribe(
+      data => {
+        let res:any = data;
+        console.log(
+          `👏 > 👏 > 👏 > 👏 ${request.firstName} is successfully register and mail has been sent and the message id is ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
 
   }
 
