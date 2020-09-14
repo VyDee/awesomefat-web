@@ -1,56 +1,98 @@
 <div class="aws-about-me-container">
   <div class="row">
-    <div class="col-xl-6">
+    <div class="col-xl-5">
       <img src="../../../assets/images/login-background.jpg" class="aws-login-background">
     </div>
     <div class="col-xl-5">
-      <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit(signInForm)">
         <h3 class="aws-login-header">Sign in</h3>
         <div class="form-group form-inline">
           <label for="signInEmail">User Email</label>
-          <input id="signInEmail" name="signInEmail" class="form-control w-75" [(ngModel)]="userSigninInfo.email"
-          required type="text">
+          <input type="email" id="signInEmail" name="signInEmail" class="form-control w-75" formControlName="signInEmail"
+          [ngClass]="{'is-invalid': isSignInInvalidControl('signInEmail')}" maxlength="80">
+          <div class="invalid-feedback" *ngIf="isSignInInvalidControl('signInEmail')">
+            <div *ngIf="signInForm.controls['signInEmail'].errors.required">
+              Required
+            </div>
+            <div *ngIf="signInForm.controls['signInEmail'].errors.email || signInForm.controls['signInEmail'].errors.pattern">
+              Invalid email address
+            </div>
+          </div>
         </div>
         <div class="form-group form-inline">
           <label for="signInPw">Password</label>
-          <input id="signInPw" name="signInPw" class="form-control w-75"  [(ngModel)]="userSigninInfo.password"
-          required type="password">
+          <input type="password" id="signInPw" name="signInPw" class="form-control w-75"  formControlName="signInPw"
+          [ngClass]="{'is-invalid': isSignInInvalidControl('signInPw')}" maxlength="32">
+          <div class="invalid-feedback" *ngIf="isSignInInvalidControl('signInPw')">
+            <div *ngIf="signInForm.controls['signInPw'].errors.required">
+              Required
+            </div>
+          </div>
         </div>
         <div class="text-center aws-submit-button">
           <button type="submit">Sign In</button>
         </div>
       </form>
       <hr>
-      <form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+      <form (ngSubmit)="onSubmit(signUpForm)" [formGroup]="signUpForm">
         <h3 class="aws-login-header">Sign up</h3>
         <div class="form-group form-inline">
           <label for="firstName">First Name</label>
-          <input id="firstName" name="firstName" class="form-control w-75" [(ngModel)]="userSignupInfo.firstName"
-          required type="text">
+          <input  type="text" id="firstName" name="firstName" class="form-control w-75"  formControlName="firstName"
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('firstName')}" maxlength="80">
+          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('firstName')">
+            <div *ngIf="signUpForm.controls['firstName'].errors.required">
+              Required
+            </div>
+          </div>
         </div>
         <div class="form-group form-inline">
           <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" class="form-control w-75" [(ngModel)]="userSignupInfo.lastName"
-          required type="text">
+          <input type="text" id="lastName" name="lastName" class="form-control w-75" formControlName="lastName"
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('lastName')}" maxlength="80">
+          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('lastName')">
+            <div *ngIf="signUpForm.controls['lastName'].errors.required">
+              Required
+            </div>
+          </div>
         </div>
         <div class="form-group form-inline">
           <label for="phoneNumber">Phone Number</label>
-          <input id="phoneNumber" name="phoneNumber" class="form-control w-75" [(ngModel)]="userSignupInfo.phoneNumber"
-          required type="tel">
+          <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control w-75" formControlName="phoneNumber"
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('phoneNumber')}" maxlength="11">
+          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('phoneNumber')">
+            <div *ngIf="signUpForm.controls['phoneNumber'].errors.required">
+              Required
+            </div>
+          </div>
         </div>
         <div class="form-group form-inline">
           <label for="signUpEmail">Email</label>
-          <input id="signUpEmail" name="signUpEmail" class="form-control w-75" [(ngModel)]="userSignupInfo.email"
-          required type="email">
+          <input  type="email" id="signUpEmail" name="signUpEmail" class="form-control w-75" formControlName="signUpEmail"
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('signUpEmail')}" maxlength="80">
+          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('signUpEmail')">
+            <div *ngIf="signUpForm.controls['signUpEmail'].errors.required">
+              Required
+            </div>
+            <div *ngIf="signUpForm.controls['signUpEmail'].errors.email || signUpForm.controls['signUpEmail'].errors.pattern">
+              Invalid email address
+            </div>
+          </div>
         </div>
         <div class="form-group form-inline">
           <label for="signUpPw">Password</label>
-          <input  id="signUpPw" name="signUpPw" class="form-control w-75"  [(ngModel)]="userSignupInfo.password"
-          required type="password">
+          <input type="password" id="signUpPw" name="signUpPw" class="form-control w-75" formControlName="signUpPw"
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('signUpPw')}" maxlength="32">
+          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('signUpPw')">
+            <div *ngIf="signUpForm.controls['signUpPw'].errors.required">
+              Required
+            </div>
+          </div>
         </div>
-        <div class="text-center aws-submit-button">
+        <div class="text-center aws-submit-button add-margin-bottom">
           <button type="submit">Sign Up</button>
         </div>
+        <br/>
       </form>
     </div>
   </div>

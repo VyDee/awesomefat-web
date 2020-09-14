@@ -2,6 +2,6 @@ export interface UserLogInInfo {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  email: string;
+  userEmail: string;
   password: string;
 }

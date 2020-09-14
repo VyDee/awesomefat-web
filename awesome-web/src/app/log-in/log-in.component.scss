@@ -1,23 +1,54 @@
 @import "src/scss/styles.scss";
 .aws-login-background {
-    display: inline-block;
+    height: 100%;
+    position: fixed;
     top: 0px;
+    @media (max-width: 1202px) {
+      display: none;
+    }
 }
 
 .aws-about-me-container {
   overflow-x:hidden;
   background-color: #8C8C8C;
   font-family: $aws-font;
+  font-size: 14px;
   button {
     padding: 2% 5%;
   }
   hr {
     border: 1px solid white;
-    margin: 3.5em 4em 3.5em 0em;
+    margin: 3.5em 0em 3.5em 0em;
   }
+
+  label {
+    width: 25%;
+  }
+  @media (max-width: 1202px) {
+    label {
+      width: 10%;
+      margin-left: 5%;
+    }
+    h3 {
+      margin-left: 5%;;
+    }
+    hr {
+      margin: 3em;
+    }
+    button {
+      padding: 1% 3%;
+    }
+    input {
+      margin-right: 5px;
+    }
+  }
+
 }
 .aws-login-header {
   color: white;
   margin: 6% 0%;
+}
+.add-margin-bottom {
+  margin-bottom: 10%;
 }
 
