@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "awesome-web-905c4": {
+      "hosting": {
+        "awesome-web": [
+          "awesome-web-905c4"
+        ]
+      }
+    }
+  }
+}

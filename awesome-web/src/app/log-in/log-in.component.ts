@@ -2,6 +2,9 @@ import { StringValidator } from './../validators/string.validator';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserLogInInfo } from './../shared/user-login';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -27,7 +30,9 @@ export class LogInComponent implements OnInit {
   signUpSubmitted = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auth: AngularFireAuth,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,8 +42,15 @@ export class LogInComponent implements OnInit {
 
   private createSignInForm() {
     this.signInForm = this.formBuilder.group({
-      signInEmail: [this.userSigninInfo.userEmail, [StringValidator.noBlank, , Validators.required, Validators.maxLength(100)]],
-      signInPw: [this.userSigninInfo.password, [StringValidator.noBlank, Validators.required, Validators.maxLength(50)]]
+      signInEmail: new FormControl(
+        this.userSigninInfo.userEmail,
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(`.*@.*[.].[^0-9][a-zA-Z]`)
+        ]
+      ),
+      signInPw: new FormControl(this.userSigninInfo.password, [StringValidator.noBlank, Validators.required, Validators.maxLength(50)])
     });
   }
 
@@ -56,6 +68,20 @@ export class LogInComponent implements OnInit {
         ]
       ],
       signUpPw: [this.userSignUpInfo.password, [StringValidator.noBlank, Validators.required, Validators.maxLength(50)]],
+    });
+  }
+
+  createUser() {
+    console.log("I am in create user");
+    const values = this.signInForm.value;
+    const request = {
+      email: values.signInEmail,
+      password: values.signInPw
+    };
+
+    this.auth.createUserWithEmailAndPassword(request.email, request.password).then((user) => {
+      console.log("createUser ", user);
+      this.router.navigate(['']);
     });
   }
 
@@ -77,6 +103,7 @@ export class LogInComponent implements OnInit {
     if (!form.valid) {
       return;
     }
+    this.createUser()
   }
 
 }

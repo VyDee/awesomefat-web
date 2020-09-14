@@ -17,6 +17,8 @@ import { LogInComponent } from './log-in/log-in.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       maxOpened: 1,
       autoDismiss: true,
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebase)
 
   ],
   providers: [MessageService, NotificationService],

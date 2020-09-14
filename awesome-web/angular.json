@@ -130,8 +130,13 @@
               "devServerTarget": "awesome-web:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "awesome-web"
 }
