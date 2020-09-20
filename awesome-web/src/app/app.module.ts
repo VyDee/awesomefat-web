@@ -1,3 +1,4 @@
+import { UserFirebaseService } from './service/user-firebase.service';
 import { NotificationService } from './service/notification.service';
 import { MessageService } from './service/message.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -42,10 +44,10 @@ import { environment } from 'src/environments/environment';
       maxOpened: 1,
       autoDismiss: true,
     }),
-    AngularFireModule.initializeApp(environment.firebase)
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
-  providers: [MessageService, NotificationService],
+  providers: [MessageService, NotificationService, UserFirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -69,8 +69,8 @@
         <div class="form-group form-inline">
           <label for="signUpEmail">Email</label>
           <input  type="email" id="signUpEmail" name="signUpEmail" class="form-control w-75" formControlName="signUpEmail"
-          [ngClass]="{'is-invalid': isSignUpInvalidControl('signUpEmail')}" maxlength="80">
-          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('signUpEmail')">
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('signUpEmail') || existedEmail}" maxlength="80">
+          <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('signUpEmail') && !existedEmail">
             <div *ngIf="signUpForm.controls['signUpEmail'].errors.required">
               Required
             </div>
@@ -78,14 +78,20 @@
               Invalid email address
             </div>
           </div>
+          <div class="invalid-feedback" *ngIf="existedEmail">
+            Email already in use
+          </div>
         </div>
         <div class="form-group form-inline">
           <label for="signUpPw">Password</label>
           <input type="password" id="signUpPw" name="signUpPw" class="form-control w-75" formControlName="signUpPw"
-          [ngClass]="{'is-invalid': isSignUpInvalidControl('signUpPw')}" maxlength="32">
+          [ngClass]="{'is-invalid': isSignUpInvalidControl('signUpPw')}" maxlength="32" minlength="6">
           <div class="invalid-feedback" *ngIf="isSignUpInvalidControl('signUpPw')">
             <div *ngIf="signUpForm.controls['signUpPw'].errors.required">
               Required
+            </div>
+            <div *ngIf="signUpForm.controls['signUpPw'].errors.minlength">
+              Type at least 6 characters
             </div>
           </div>
         </div>

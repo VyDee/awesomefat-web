@@ -19,15 +19,9 @@ export class AboutMeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // public onSectionChange(sectionId: string) {
-  //   this.currentSection = sectionId;
-  //   console.log("onSectionChange ",sectionId);
-  // }
-
   public onClick(elementId: string) {
     this.currentSection = elementId;
     this.viewportScroller.scrollToAnchor(elementId);
-    // console.log(this.viewportScroller.scrollToAnchor(elementId));
   }
 
   @HostListener('window: scroll', ['$event'])
@@ -37,15 +31,10 @@ export class AboutMeComponent implements OnInit {
 
     //get aws-content children
     const children = this._el.nativeElement.children[0].children[1].children;
-    // console.log(">> _el.nativeElement.child[0]: ", this._el.nativeElement.children[0]);
-    // console.log(">>> ..... children[1] ", this._el.nativeElement.children[0].children[1]);
-    // console.log(">>> ..... children[1].children ", children);
 
     for (let i = 0; i < children.length; i ++) {
       const element = children [i];
-      // console.log(element);
 
-      // console.log(element.tagName);
       if(element.tagName === this.spiedTag) {
         // compare element position counting from the top with the vertical offset
         if (element.offsetTop < verticalOffset) {
