@@ -1,4 +1,4 @@
-import { UserFirebaseService } from './service/user-firebase.service';
+import { UserAuthService } from './service/user-auth.service';
 import { NotificationService } from './service/notification.service';
 import { MessageService } from './service/message.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,7 +47,7 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  providers: [MessageService, NotificationService, UserFirebaseService],
+  providers: [MessageService, NotificationService, UserAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

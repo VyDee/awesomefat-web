@@ -1,11 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { UserFirebaseService } from './../service/user-firebase.service';
+import { UserAuthService } from '../service/user-auth.service';
 import { StringValidator } from './../validators/string.validator';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserInfo } from '../shared/user-info';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import { NotificationService } from '../service/notification.service';
 import * as firebase from 'firebase';
 
@@ -37,8 +35,7 @@ export class LogInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private auth: AngularFireAuth,
-    private router: Router,
-    private userFirebaseService: UserFirebaseService,
+    private userAuthService: UserAuthService,
     private notificationService: NotificationService
   ) { }
 
@@ -95,14 +92,16 @@ export class LogInComponent implements OnInit {
     this.auth.createUserWithEmailAndPassword(request.email, request.password)
       .then((user) => {
         this.existedEmail = false;
+        console.log(user.user.uid);
         const newUser: UserInfo = {
           firstName: values.firstName,
           lastName: values.lastName,
           phoneNumber: values.phoneNumber,
           userEmail: values.signUpEmail,
           password: values.signUpPw,
+          userUID: user.user.uid
         };
-        this.userFirebaseService.addUsers(newUser);
+        this.userAuthService.addUsers(newUser);
         this.notificationService.showSuccess('The user has been created. Please sign in.');
         this.resetSignUpForm();
         this.signUpSubmitted = false;
@@ -111,20 +110,6 @@ export class LogInComponent implements OnInit {
             this.existedEmail = true;
           }
         });
-  }
-
-  onLogin() {
-    const values = this.signInForm.value;
-    const request = {
-      email: values.signInEmail,
-      password: values.signInPw
-    };
-    this.auth
-      .signInWithEmailAndPassword(request.email, request.password)
-      .then(() => {
-        console.log("Sign in successfully")
-        this.router.navigate([''])
-      });
   }
 
   isSignInInvalidControl(controlName: string){
@@ -147,7 +132,8 @@ export class LogInComponent implements OnInit {
       this.createUser();
     }
     else {
-      this.onLogin();
+      const values = this.signInForm.value;
+      this.userAuthService.onLogin(values.signInEmail, values.signInPw);
     }
   }
 }

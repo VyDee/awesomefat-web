@@ -34,19 +34,17 @@
       <li class="nav-item">
         <a class="nav-link" href="#" [routerLink]="['/contact-us']">Contact Us</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!userAuthService.isAuthenticated()">
         <a class="nav-link" href="#" [routerLink]="['/log-in']">Log in</a>
       </li>
-      <!-- <div class="dropdown">
+      <div class="dropdown" *ngIf="userAuthService.isAuthenticated()">
         <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Welcome, {{name}}
+          Welcome {{userAuthService.currentUser.firstName}}
         </button>
-        <div class="dropdown-menu-right dropdown-menu">
-          <button class="dropdown-item" type="button">Action</button>
-          <button class="dropdown-item" type="button">Another action</button>
-          <button class="dropdown-item" type="button">Something else here</button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item">Log out</a>
         </div>
-      </div> -->
+      </div>
     </ul>
   </div>
 </nav>
