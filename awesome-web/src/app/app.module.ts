@@ -21,6 +21,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { AppServiceComponent } from './aws-service/app-service/app-service.component';
+import { CoachingServiceComponent } from './aws-service/coaching-service/coaching-service.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { environment } from 'src/environments/environment';
     HomeComponent,
     ContactUsComponent,
     LogInComponent,
+    AppServiceComponent,
+    CoachingServiceComponent,
   ],
   imports: [
     BrowserModule,

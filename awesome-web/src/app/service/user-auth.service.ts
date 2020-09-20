@@ -1,3 +1,4 @@
+import { NotificationService } from './notification.service';
 import { filter, map } from 'rxjs/operators';
 import { UserInfo } from '../shared/user-info';
 import { Injectable } from '@angular/core';
@@ -17,7 +18,8 @@ export class UserAuthService {
   constructor(
     public afs: AngularFirestore,
     private auth: AngularFireAuth,
-    private router: Router) {
+    private router: Router,
+    private notificationService: NotificationService) {
     this.usersCollection = afs.collection<UserInfo>('users');
     this.users = this.usersCollection.valueChanges();
   }
@@ -50,12 +52,30 @@ export class UserAuthService {
           this.currentUser = results[0];
           this.router.navigate(['/home']);
         })
+      }, (error) => {
+        console.log(error);
+        if(error.code === "auth/user-not-found") {
+          this.notificationService.showError("User is not found. Please check your email, password or create a new user account");
+        }
       }
       );
   }
 
   isAuthenticated() {
     return !!this.currentUser;
+  }
+
+  onLogOut() {
+    return new Promise((resolve, reject) => {
+      if(this.currentUser) {
+        this.auth.signOut();
+        this.currentUser = null;
+        this.notificationService.showSuccess("You have successfully logged out")
+        resolve();
+      } else {
+        reject();
+      }
+    })
   }
 }
 
