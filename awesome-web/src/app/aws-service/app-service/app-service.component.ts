@@ -19,7 +19,7 @@ export class AppServiceComponent implements OnInit {
   constructor(
     private afs: AngularFirestore
   ) {
-    this.exampleProductsCollection = afs.collection<ExampleProduct>('ex-prod');
+    this.exampleProductsCollection = this.afs.collection<ExampleProduct>('ex-prod');
     this.exampleProducts = this.exampleProductsCollection.valueChanges();
   }
 

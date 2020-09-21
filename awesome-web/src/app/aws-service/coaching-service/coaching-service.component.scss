@@ -1,0 +1,65 @@
+@import "src/scss/styles.scss";
+.aws-coaching-container {
+    background-image: url("../../../assets/images/coaching-background.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 50vh;
+}
+
+.aws-coaching-body {
+  widows: 100%;
+  padding: 5%;
+}
+
+.aws-coaching-header {
+  font-size: 4em;
+  color: 403933;
+  display: flex;
+  align-items: center;
+  p {
+    padding: 3%;
+    width: 50%;
+    text-align: center;
+  }
+}
+
+.shopping-cart {
+  padding: 1% 2% 1% 92%;
+  background-color: #F2F2F2;
+
+  button {
+    border: none;
+    padding: 5px 7px;
+    i{
+      font-size: 28px;
+    }
+    &:active, &:hover, &:focus{
+      outline: none;
+      background-color: darken(#F2F2F2, 10%);
+    }
+  }
+}
+.service-item{
+  padding: 3%;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-bottom: 4%;
+  &:hover, &:active, &:focus {
+    background-color: darken(#F2F2F2, 5%);
+  }
+  img {
+    width: 100%;
+  }
+  .aws-button-center-position {
+    a {
+      padding: 1%;
+      border-radius: 5px;
+      background-color: #333333;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
