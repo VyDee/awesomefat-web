@@ -1,1 +1,65 @@
-<p>app-service works!</p>
+<div class="aws-app-ser-container aws-app-ser-header">
+  <p>Application Development</p>
+</div>
+<div class="aws-app-ser-body">
+  <div class="overview-div-margin">
+    <h2>Overview</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur quam quis vestibulum vulputate.
+        Pellentesque mattis egestas orci vel ullamcorper. Etiam pretium in eros eget egestas. Nulla sollicitudin posuere leo,
+        in gravida leo luctus a. Morbi lobortis urna ut risus imperdiet iaculis. Praesent elit risus, viverra bibendum porta vitae,
+        consequat ac ex. Quisque vulputate erat mauris, at lobortis velit porta ac. Aenean mollis dapibus iaculis. Quisque rutrum nisl
+        sed venenatis iaculis. Morbi sit amet dapibus massa. Nam semper massa nulla, vel consequat felis facilisis dictum. Donec ultricies,
+        erat at maximus varius, odio metus pulvinar sapien, sed auctor dui urna ac risus. Duis tristique,
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur quam quis vestibulum vulputate.
+        Pellentesque mattis egestas orci vel ullamcorper. Etiam pretium in eros eget egestas. Nulla sollicitudin posuere leo,
+        in gravida leo luctus a. Morbi lobortis urna ut risus imperdiet iaculis. Praesent elit risus, viverra bibendum porta vitae,
+        consequat ac ex. Quisque vulputate erat mauris, at lobortis velit porta ac. Aenean mollis dapibus iaculis. Quisque rutrum nisl
+        sed venenatis iaculis. Morbi sit amet dapibus massa. Nam semper massa nulla, vel consequat felis facilisis dictum. Donec ultricies,
+        erat at maximus varius, odio metus pulvinar sapien, sed auctor dui urna ac risus. Duis tristique,
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur quam quis vestibulum vulputate.
+        Pellentesque mattis egestas orci vel ullamcorper. Etiam pretium in eros eget egestas.
+      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur quam quis vestibulum vulputate.
+        Pellentesque mattis egestas orci vel ullamcorper. Etiam pretium in eros eget egestas. Nulla sollicitudin posuere leo,
+        in gravida leo luctus a. Morbi lobortis urna ut risus imperdiet iaculis. Praesent elit risus, viverra bibendum porta vitae,
+        consequat ac ex. Quisque vulputate erat mauris, at lobortis velit porta ac. Aenean mollis dapibus iaculis. Quisque rutrum nisl
+        sed venenatis iaculis. Morbi sit amet dapibus massa. Nam semper massa nulla, vel consequat felis facilisis dictum. Donec ultricies.
+      </p>
+  </div>
+  <div>
+    <h2>Example products</h2>
+    <div class="text-center my-3">
+      <div id="exProductCarousel" class="carousel slide w-100" data-ride="carousel">
+          <div class="carousel-inner w-100" role="listbox">
+              <div class="carousel-item row no-gutters active">
+                <div *ngFor= "let product of newSpiltExampleArr[0]">
+                  <div class="col-2 float-left"><img class="img-fluid" src="{{product.imageUrl}}"></div>
+                </div>
+              </div>
+              <div class="carousel-item row no-gutters" *ngFor= "let smallArray of newSpiltExampleArr">
+                <div *ngFor= "let product of smallArray">
+                  <div class="col-2 float-left"><img class="img-fluid" src="{{product.imageUrl}}"></div>
+                </div>
+              </div>
+          </div>
+          <a class="carousel-control-prev" href="#exProductCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true">
+                <i class="fas fa-chevron-left"></i>
+              </span>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#exProductCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+              <span class="sr-only">Next</span>
+          </a>
+      </div>
+    </div>
+  </div>
+  <div class="aws-button-center-position">
+    <a [routerLink]="['/contact-us']">Contact Us Now</a>
+  </div>
+</div>
+<!-- <div class="bottom-image">
+</div> -->

@@ -16,7 +16,7 @@ export class UserAuthService {
   currentUser: UserInfo;
 
   constructor(
-    public afs: AngularFirestore,
+    private afs: AngularFirestore,
     private auth: AngularFireAuth,
     private router: Router,
     private notificationService: NotificationService) {

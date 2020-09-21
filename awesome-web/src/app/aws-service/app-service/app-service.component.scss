@@ -1,0 +1,76 @@
+@import "src/scss/styles.scss";
+.aws-app-ser-container {
+    background-image: url("../../../assets/images/app-service-header.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.bottom-image {
+  background-image: url("../../../assets/images/app-service-bottom.png");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  height: 70vh;
+}
+
+.aws-app-ser-header {
+  font-size: 4em;
+  color: #403933;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    padding: 3%
+  }
+}
+
+.aws-app-ser-body {
+  widows: 100%;
+  background-color: #59544F;
+  padding: 5%;
+  color: white;
+  p {
+    margin:1% 3%;
+  }
+  h2 {
+    margin-bottom: 2%;
+  }
+  .aws-button-center-position {
+    a {
+      padding: .9%;
+      border-radius: 5px;
+      margin: 5%;
+      border: none;
+      background-color: #A4A8B1;
+      font-size: 20px;
+      color: black;
+      font-weight: 600;
+      &:hover, &:active, &:focus {
+        outline: 1px solid white;
+        outline-offset: -8px;
+        outline-width: 2px;
+      }
+    }
+  }
+}
+
+.overview-div-margin {
+  margin-bottom: 5%;
+}
+
+#exProductCarousel {
+  padding: 1%;
+  a {
+    width: 0%;
+    font-size: 3em;
+    color: black;
+    top: -18%;
+  }
+}
+.carousel-control-prev-icon {
+  background-image: none;
+}
+.carousel-control-next-icon {
+  background-image: none;
+}

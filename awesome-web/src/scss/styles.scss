@@ -36,3 +36,11 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
 .is-invalid ~ .invalid-feedback {
   display: contents;
 }
+
+.aws-button-center-position {
+  display: flex;
+  justify-content: center;
+  a{
+    text-decoration: none;
+  }
+}
