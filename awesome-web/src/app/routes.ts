@@ -1,3 +1,4 @@
+import { CoachingDetailComponent } from './aws-service/coaching-service/coaching-detail.component';
 import { CoachingServiceComponent } from './aws-service/coaching-service/coaching-service.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -13,6 +14,7 @@ export const appRoutes: Routes = [
     { path: 'log-in', component: LogInComponent},
     { path: 'services/app-dev', component: AppServiceComponent},
     { path: 'services/coaching', component: CoachingServiceComponent},
+    { path: 'services/coaching/:id', component: CoachingDetailComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full'}
 ]
 

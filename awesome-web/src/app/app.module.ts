@@ -1,3 +1,4 @@
+import { CoachingResolverService } from './aws-service/coaching-service/coaching-resolver.service';
 import { UserAuthService } from './service/user-auth.service';
 import { NotificationService } from './service/notification.service';
 import { MessageService } from './service/message.service';
@@ -23,6 +24,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { AppServiceComponent } from './aws-service/app-service/app-service.component';
 import { CoachingServiceComponent } from './aws-service/coaching-service/coaching-service.component';
+import { CoachingDetailComponent } from './aws-service/coaching-service/coaching-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { CoachingServiceComponent } from './aws-service/coaching-service/coachin
     LogInComponent,
     AppServiceComponent,
     CoachingServiceComponent,
+    CoachingDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,12 @@ import { CoachingServiceComponent } from './aws-service/coaching-service/coachin
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  providers: [MessageService, NotificationService, UserAuthService],
+  providers: [
+    MessageService,
+    NotificationService,
+    UserAuthService,
+    CoachingResolverService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
