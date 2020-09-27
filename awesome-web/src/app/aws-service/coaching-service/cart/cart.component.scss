@@ -1,0 +1,16 @@
+.shopping-cart {
+  padding: 1% 2% 1% 92%;
+  background-color: #F2F2F2;
+
+  button {
+    border: none;
+    padding: 5px 7px;
+    i{
+      font-size: 28px;
+    }
+    &:active, &:hover, &:focus{
+      outline: none;
+      background-color: darken(#F2F2F2, 10%);
+    }
+  }
+}

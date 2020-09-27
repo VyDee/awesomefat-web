@@ -26,9 +26,7 @@ export class AppServiceComponent implements OnInit {
   ngOnInit(): void {
     this.getExProducts().subscribe((products) => {
       this.exampleProductArr = products;
-      console.log('old ', this.exampleProductArr);
       this.newSpiltExampleArr = this.spiltArrayIntoChunk(this.exampleProductArr, 6);
-      console.log('new ', this.newSpiltExampleArr);
     });
 
   }
@@ -53,21 +51,3 @@ export class AppServiceComponent implements OnInit {
   }
 
 }
-
-// var perChunk = 2 // items per chunk
-
-// var inputArray = ['a','b','c','d','e']
-
-// var result = inputArray.reduce((resultArray, item, index) => {
-//   const chunkIndex = Math.floor(index/perChunk)
-
-//   if(!resultArray[chunkIndex]) {
-//     resultArray[chunkIndex] = [] // start a new chunk
-//   }
-
-//   resultArray[chunkIndex].push(item)
-
-//   return resultArray
-// }, [])
-
-// console.log(result); // result: [['a','b'], ['c','d'], ['e']]

@@ -28,15 +28,12 @@ export class UserAuthService {
     return this.users;
   }
   addUsers(user :UserInfo) {
-    console.log(user.userUID);
-    console.log(user)
     const id = this.afs.createId();
     user.userId = id;
     this.usersCollection.doc(id).set(user);
   }
 
   updateUsers(user) {
-    console.log(user.userId)
     this.userDoc = this.afs.doc(`users/${user.userId}`);
     this.userDoc.update(user);
   }
@@ -53,7 +50,6 @@ export class UserAuthService {
           this.router.navigate(['/home']);
         })
       }, (error) => {
-        console.log(error);
         if(error.code === "auth/user-not-found") {
           this.notificationService.showError("User is not found. Please check your email, password or create a new user account");
         }

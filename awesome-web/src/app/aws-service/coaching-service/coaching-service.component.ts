@@ -17,7 +17,6 @@ export class CoachingServiceComponent implements OnInit {
   ngOnInit(): void {
     this.coachingService.getCoachingServices().subscribe((services) => {
       this.coachingServiceArr = services;
-      console.log(this.coachingServiceArr);
     })
   }
 

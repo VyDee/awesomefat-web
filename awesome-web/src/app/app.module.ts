@@ -25,6 +25,8 @@ import { environment } from 'src/environments/environment';
 import { AppServiceComponent } from './aws-service/app-service/app-service.component';
 import { CoachingServiceComponent } from './aws-service/coaching-service/coaching-service.component';
 import { CoachingDetailComponent } from './aws-service/coaching-service/coaching-detail.component';
+import { CartSummaryComponent } from './aws-service/coaching-service/cart-summary/cart-summary.component';
+import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { CoachingDetailComponent } from './aws-service/coaching-service/coaching
     AppServiceComponent,
     CoachingServiceComponent,
     CoachingDetailComponent,
+    CartSummaryComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

@@ -92,7 +92,6 @@ export class LogInComponent implements OnInit {
     this.auth.createUserWithEmailAndPassword(request.email, request.password)
       .then((user) => {
         this.existedEmail = false;
-        console.log(user.user.uid);
         const newUser: UserInfo = {
           firstName: values.firstName,
           lastName: values.lastName,
