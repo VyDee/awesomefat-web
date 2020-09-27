@@ -44,3 +44,14 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
     text-decoration: none;
   }
 }
+
+.aws-back-button {
+  margin: 3% 91% 3% 3%;
+  font-size: 1.5em;
+  i {
+    margin-right: 1%;
+  }
+  &:focus {
+    outline: 0;
+  }
+}

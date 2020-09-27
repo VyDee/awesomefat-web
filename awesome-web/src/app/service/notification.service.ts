@@ -14,4 +14,7 @@ export class NotificationService {
   showError(message, title?) {
     this.toastr.error(message, title);
   }
+  showInfo(message, title?) {
+    this.toastr.info(message, title);
+  }
 }
