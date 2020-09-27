@@ -1,3 +1,4 @@
+import { ShoppingService } from './service/shopping.service';
 import { UserAuthService } from './service/user-auth.service';
 import { NotificationService } from './service/notification.service';
 import { MessageService } from './service/message.service';
@@ -56,7 +57,8 @@ import { CoachingDetailComponent } from './aws-service/coaching-service/coaching
   providers: [
     MessageService,
     NotificationService,
-    UserAuthService
+    UserAuthService,
+    ShoppingService
   ],
   bootstrap: [AppComponent]
 })
