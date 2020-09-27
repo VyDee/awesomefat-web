@@ -2,4 +2,25 @@
   <i class="fas fa-chevron-left"></i>
   <a>Back</a>
 </div>
-Summary
+<div class=" container" *ngIf="!userAuthService.isAuthenticated()">
+  <h3>Please log in to view the cart</h3>
+  <img class="custom-cart-img" src="https://d5qmjlya0ygtg.cloudfront.net/853/567/457/-129996983-1tk9m6r-bhh22jbsao3bbk0/original/th.png">
+</div>
+
+<div class="container cart-item" *ngIf="userAuthService.isAuthenticated()">
+  <h3>Product Summary</h3>
+  <div class="row" *ngFor="let order of ordersArray">
+    <div class="col-sm-1">
+      <img src="{{order.imageUrl}}">
+    </div>
+    <div class="col-sm-3">
+      <h6>{{order.name}}</h6>
+    </div>
+    <div class="col-sm-2">
+      <h6>{{order.price}}</h6>
+    </div>
+    <div class="col-sm-3">
+      <button type="button" class="btn btn-outline-danger center-text" (click)="deleteOrder(order)">Delete</button>
+    </div>
+  </div>
+</div>

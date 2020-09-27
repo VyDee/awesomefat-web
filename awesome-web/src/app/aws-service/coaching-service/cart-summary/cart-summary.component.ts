@@ -1,5 +1,7 @@
+import { ShoppingService } from 'src/app/service/shopping.service';
+import { UserOrder } from './../../../shared/order-info';
+import { UserAuthService } from 'src/app/service/user-auth.service';
 import { CartComponent } from './../cart/cart.component';
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartSummaryComponent implements OnInit {
   id: number;
+  ordersArray = [];
 
   constructor(
-    private cart: CartComponent
+    private cart: CartComponent,
+    public userAuthService: UserAuthService,
+    private shoppingService: ShoppingService
   ) { }
 
   ngOnInit(): void {
     this.id = this.cart.id;
+    this.ordersArray = this.cart.totalOrders;
+  }
+
+  deleteOrder(order: UserOrder){
+    this.shoppingService.deleteOrder(order);
+    this.ordersArray = this.ordersArray.filter(x => x.orderId !== order.orderId);
   }
 
 }

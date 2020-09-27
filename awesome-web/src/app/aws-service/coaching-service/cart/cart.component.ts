@@ -10,6 +10,7 @@ import { UserAuthService } from 'src/app/service/user-auth.service';
 })
 export class CartComponent implements OnInit {
   totalNumber = 0;
+  totalOrders;
   id: number;
   constructor(
     private shoppingService: ShoppingService,
@@ -26,8 +27,8 @@ export class CartComponent implements OnInit {
     if(this.userAuthService.isAuthenticated())
     {
       this.shoppingService.getOrders().subscribe((orders) => {
-        const totalOrders = orders.filter(x => x.userUID === this.userAuthService.currentUser.userUID);
-        this.totalNumber = totalOrders.length;
+        this.totalOrders = orders.filter(x => x.userUID === this.userAuthService.currentUser.userUID);
+        this.totalNumber = this.totalOrders.length;
       })
     }
   }

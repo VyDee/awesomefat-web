@@ -38,4 +38,10 @@ export class ShoppingService {
      this.shoppingOrdersCollection.add(order);
      this.notificationService.showSuccess("Your order has succesfully added to the cart")
    }
+
+   deleteOrder(order: UserOrder) {
+     this.shoppingOrderDoc = this.afs.doc(`orders/${order.orderId}`);
+
+     this.shoppingOrderDoc.delete();
+   }
 }
