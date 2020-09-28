@@ -8,6 +8,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '../app/home/home.component';
 import { AboutMeComponent } from '../app/about-me/about-me.component';
 import { AppServiceComponent } from './aws-service/app-service/app-service.component';
+import { AuthGuard } from './service/auth.guard';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },

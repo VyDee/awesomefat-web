@@ -31,21 +31,20 @@ export class CoachingDetailComponent implements OnInit {
   }
 
   addToCart(){
-    const order: UserOrder = {
-      userUID: this.userAuthService.currentUser.userUID,
-      name: this.service.name,
-      imageUrl: this.service.imageUrl,
-      price: this.service.price,
-      date: '',
-      time: ''
-    };
-    this.shoppingService.addOrder(order);
-  }
-
-  openCartModal() {
     if (!this.userAuthService.isAuthenticated()){
       this.notificationService.showInfo('Please log in before adding to the cart');
     }
-  }
+    else {
+      const order: UserOrder = {
+        userUID: this.userAuthService.currentUser.userUID,
+        name: this.service.name,
+        imageUrl: this.service.imageUrl,
+        price: this.service.price,
+        date: '',
+        time: ''
+      };
+      this.shoppingService.addOrder(order);
+    }
 
+  }
 }

@@ -1,3 +1,4 @@
+import { AuthGuard } from './service/auth.guard';
 import { ShoppingService } from './service/shopping.service';
 import { UserAuthService } from './service/user-auth.service';
 import { NotificationService } from './service/notification.service';
@@ -62,7 +63,8 @@ import { CartComponent } from './aws-service/coaching-service/cart/cart.componen
     MessageService,
     NotificationService,
     UserAuthService,
-    ShoppingService
+    ShoppingService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

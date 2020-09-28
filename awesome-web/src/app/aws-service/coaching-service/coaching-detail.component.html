@@ -13,27 +13,7 @@
     </div>
     <div class="col-sm aws-price-box aws-addToCart-button">
       <p>Price: {{service.price}} dollars per hour</p>
-      <button id="addToCartId" data-toggle="modal" data-target="#exampleModal" (click)="openCartModal()">Add to cart</button>
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="userAuthService.isAuthenticated()">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Do you want to add {{service.name}} service to cart? </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Click "Add" to book the service. Click "Cancel" to close the modal
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button (click)="addToCart()"type="button" class="btn btn-primary" data-dismiss="modal">Add to cart</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button id="addToCartId" data-toggle="modal"(click)="addToCart()">Add to cart</button>
     </div>
   <div></div>
   </div>
