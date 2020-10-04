@@ -1,3 +1,4 @@
+import { NavbarComponent } from './../../../navbar/navbar.component';
 import { ShoppingService } from 'src/app/service/shopping.service';
 import { UserOrder } from './../../../shared/order-info';
 import { UserAuthService } from 'src/app/service/user-auth.service';
@@ -21,12 +22,11 @@ export class CartSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.cart.id;
-    this.ordersArray = this.cart.totalOrders;
   }
 
   deleteOrder(order: UserOrder){
     this.shoppingService.deleteOrder(order);
-    this.ordersArray = this.ordersArray.filter(x => x.orderId !== order.orderId);
+    this.cart.totalNumber = this.ordersArray.length;
   }
 
 }

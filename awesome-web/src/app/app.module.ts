@@ -6,7 +6,7 @@ import { MessageService } from './service/message.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -28,6 +28,7 @@ import { CoachingServiceComponent } from './aws-service/coaching-service/coachin
 import { CoachingDetailComponent } from './aws-service/coaching-service/coaching-detail.component';
 import { CartSummaryComponent } from './aws-service/coaching-service/cart-summary/cart-summary.component';
 import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
+import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CartComponent } from './aws-service/coaching-service/cart/cart.componen
     CoachingDetailComponent,
     CartSummaryComponent,
     CartComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { CartComponent } from './aws-service/coaching-service/cart/cart.componen
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       maxOpened: 1,

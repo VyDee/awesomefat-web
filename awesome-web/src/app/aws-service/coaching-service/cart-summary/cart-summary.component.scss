@@ -1,3 +1,5 @@
+@import "src/scss/styles.scss";
+
 .cart-item{
   border-radius: 15px;
   margin-bottom: 4%;
@@ -11,6 +13,24 @@
   .col-sm-2, .col-sm-3 {
     padding: 2%;
   }
+}
+
+.total-text {
+  padding: 2%
+}
+
+.cart-button {
+    padding: .9%;
+    border-radius: 5px;
+    border: none;
+    background-color: $navbarBackgroundColor;
+    font-size: 1em;
+    margin: 3% 0% 5% 0%;
+    color: white;
+    &:hover, &:active, &:focus {
+        background-color: darken($navbarBackgroundColor,10%);
+        color: white;
+    }
 }
 
 .custom-cart-img {

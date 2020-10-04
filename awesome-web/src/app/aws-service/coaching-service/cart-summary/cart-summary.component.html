@@ -1,4 +1,4 @@
-<div class="aws-back-button" [routerLink]="['/services/coaching', id]">
+<div class="aws-back-button" [routerLink]="['/services/coaching']">
   <i class="fas fa-chevron-left"></i>
   <a>Back</a>
 </div>
@@ -9,7 +9,7 @@
 
 <div class="container cart-item" *ngIf="userAuthService.isAuthenticated()">
   <h3>Product Summary</h3>
-  <div class="row" *ngFor="let order of ordersArray">
+  <div class="row" *ngFor="let order of cart.totalOrders">
     <div class="col-sm-1">
       <img src="{{order.imageUrl}}">
     </div>
@@ -23,4 +23,20 @@
       <button type="button" class="btn btn-outline-danger center-text" (click)="deleteOrder(order)">Delete</button>
     </div>
   </div>
+  <hr class="w-75">
+  <div class="row">
+    <div class="col-sm-1 total-text">
+      <h3>Total</h3>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-2">
+      <h5>{{cart.totalPrice}}</h5>
+    </div>
+  </div>
+  <div class="aws-button-center-position">
+    <a class="cart-button">Proceed to checkout</a>
+  </div>
 </div>
+
+
