@@ -1,3 +1,4 @@
+import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
 import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
 import { CartSummaryComponent } from './aws-service/coaching-service/cart-summary/cart-summary.component';
 import { CoachingDetailComponent } from './aws-service/coaching-service/coaching-detail.component';
@@ -20,7 +21,8 @@ export const appRoutes: Routes = [
     { path: 'services/coaching/:id', component: CartComponent,
       children: [
         {path: '', component: CoachingDetailComponent},
-        {path: 'summary', component: CartSummaryComponent}
+        {path: 'summary', component: CartSummaryComponent},
+        {path: 'payment', component: PaymentComponent}
       ]
     },
     { path: '', redirectTo: '/home', pathMatch: 'full'}
