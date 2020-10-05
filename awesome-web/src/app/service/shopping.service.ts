@@ -41,7 +41,11 @@ export class ShoppingService {
 
    deleteOrder(order: UserOrder) {
      this.shoppingOrderDoc = this.afs.doc(`orders/${order.orderId}`);
-
      this.shoppingOrderDoc.delete();
+   }
+
+   updateOrder(order: UserOrder) {
+    this.shoppingOrderDoc = this.afs.doc(`orders/${order.orderId}`);
+    this.shoppingOrderDoc.update(order);
    }
 }

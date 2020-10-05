@@ -1,5 +1,30 @@
-<div class="aws-back-button" [routerLink]="['/services/coaching', id, 'summary']">
+<div class="aws-back-button" [routerLink]="['/services/coaching', id, 'summary']" *ngIf="!paidFor">
   <i class="fas fa-chevron-left"></i>
-  <a>Back</a>
+  <a>Back </a>
 </div>
-<p>payment works!</p>
+
+<div class="aws-back-button" [routerLink]="['/services/coaching']" *ngIf="paidFor">
+  <i class="fas fa-chevron-left"></i>
+  <a>Back </a>
+</div>
+
+<div class="container cart-item" *ngIf="!paidFor && cart.totalPrice > 0">
+  <h3>Please select a payment method</h3>
+  <h5>Total purchase: {{cart.totalPrice}}</h5>
+</div>
+
+<!--If the cart is done purchased-->
+<div class="container" *ngIf="paidFor">
+  <h3>Thank you for your purchase</h3>
+  <img class="custom-cart-img" src="https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/10421224_994143457262965_1342992098869916413_n.png?_nc_cat=106&_nc_sid=19026a&_nc_ohc=6C2ETk8dwk4AX84wAv1&_nc_ht=scontent-ort2-1.xx&oh=d5ab75ae814870c2031f74d868ef9eaf&oe=5FA1C9C7">
+</div>
+
+<!--If the cart is empty-->
+<div class="container" *ngIf="cart.totalPrice === 0 && !paidFor">
+  <h3>Your cart is empty</h3>
+  <img class="custom-cart-img" src="https://i.imgur.com/sTTLjdr.png">
+</div>
+
+<div class="paypal container" #paypal></div>
+
+

@@ -1,0 +1,25 @@
+@import "src/scss/styles.scss";
+
+.cart-item{
+  border-radius: 15px;
+  margin-bottom: 4%;
+  font-size: 1.2em;
+  img {
+    width: 100%;
+  }
+  h3 {
+    margin: 3% 0% 5% 0%;
+  }
+  .col-sm-2, .col-sm-3 {
+    padding: 2%;
+  }
+}
+
+.paypal {
+  width: 22%;
+}
+
+.custom-cart-img {
+  margin: 3% 0% 5% 0%;
+  width: 39%;
+}

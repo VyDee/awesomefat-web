@@ -3,6 +3,7 @@ export interface UserOrder {
   name: string;
   imageUrl: string;
   price: number;
+  isPaid: boolean;
   orderId?: string;
   date?: string;
   time?: string;

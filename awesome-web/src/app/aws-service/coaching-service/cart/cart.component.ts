@@ -38,13 +38,20 @@ export class CartComponent implements OnInit, DoCheck {
     if (this.userAuthService.isAuthenticated())
     {
       this.shoppingService.getOrders().subscribe((orders) => {
-        this.totalOrders = orders.filter(x => x.userUID === this.userUID);
+        this.totalOrders = orders.filter(x => x.userUID === this.userUID && x.isPaid === false);
         this.totalNumber = this.totalOrders.length;
 
         const priceArr = this.totalOrders.map(t => t.price);
         this.totalPrice = priceArr.reduce((acc, cur) => acc + cur, 0);
         console.log(this.totalPrice);
       });
+    }
+  }
+
+  changeToPaidOrder() {
+    for (let i = 0; i < this.totalOrders.length; i++) {
+      this.totalOrders[i].isPaid = true;
+      this.shoppingService.updateOrder(this.totalOrders[i]);
     }
   }
 

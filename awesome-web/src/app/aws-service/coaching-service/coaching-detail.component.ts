@@ -40,6 +40,7 @@ export class CoachingDetailComponent implements OnInit {
         name: this.service.name,
         imageUrl: this.service.imageUrl,
         price: this.service.price,
+        isPaid: false,
         date: '',
         time: ''
       };
