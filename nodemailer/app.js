@@ -79,3 +79,5 @@ async function sendMail (senderMessage, callback) {
 
   callback(info);
 }
+
+//Type command --> nodemon <-- to run
