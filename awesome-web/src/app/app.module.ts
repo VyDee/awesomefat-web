@@ -29,6 +29,8 @@ import { CoachingDetailComponent } from './aws-service/coaching-service/coaching
 import { CartSummaryComponent } from './aws-service/coaching-service/cart-summary/cart-summary.component';
 import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
 import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { ProfileComponent } from './my-account/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { PaymentComponent } from './aws-service/coaching-service/payment/payment
     CartSummaryComponent,
     CartComponent,
     PaymentComponent,
+    MyAccountComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

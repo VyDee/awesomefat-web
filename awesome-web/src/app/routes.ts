@@ -1,3 +1,5 @@
+import { ProfileComponent } from './my-account/profile/profile.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
 import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
 import { CartSummaryComponent } from './aws-service/coaching-service/cart-summary/cart-summary.component';
@@ -23,6 +25,12 @@ export const appRoutes: Routes = [
         {path: '', component: CoachingDetailComponent},
         {path: 'summary', component: CartSummaryComponent},
         {path: 'payment', component: PaymentComponent}
+      ]
+    },
+    { path: 'my-account', component: MyAccountComponent,
+      children: [
+        {path: '', component: ProfileComponent},
+        {path: 'profile', component: ProfileComponent}
       ]
     },
     { path: '', redirectTo: '/home', pathMatch: 'full'}

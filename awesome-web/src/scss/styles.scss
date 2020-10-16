@@ -18,6 +18,7 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
   }
 }
 
+//submit button
 .aws-submit-button {
   text-align: center;
   margin-top: 5%;
@@ -31,10 +32,6 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
         background-color: darken($navbarBackgroundColor,10%);
     }
   }
-}
-
-.is-invalid ~ .invalid-feedback {
-  display: contents;
 }
 
 .aws-button-center-position {
@@ -54,4 +51,68 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
   &:focus {
     outline: 0;
   }
+}
+
+//form error feedback
+.is-invalid ~ .invalid-feedback {
+  display: contents;
+}
+
+
+//vertical navbar and the content style for about-me and my-account
+.aws-vertical-navbar {
+  width:250px;
+  height: 100%;
+  position: fixed;
+  background-color: lighten($navbarBackgroundColor, 20%);
+  top: 0px;
+  color: white;
+  .list-group {
+      .list-group-item {
+          text-decoration: none;
+          display: block;
+          padding: 3% 0% 3% 7%;
+          font-style: normal;
+          color: white;
+          background-color: lighten($navbarBackgroundColor, 15%);
+          &:active, &:hover, &:focus {
+              background-color: lighten($navbarBackgroundColor, 10%);
+          }
+
+      }
+      .list-group-item-action {
+          border: none;
+      }
+      .active {
+          background-color: lighten($navbarBackgroundColor, 10%);
+      }
+  }
+  img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      margin: 25% auto 10% auto;
+      display: block;
+  }
+  h5 {
+      margin: 0% auto 20% auto;
+      text-align: center;
+  }
+}
+.aws-content {
+  padding: 0% 3% 0% 23%;
+  @media (max-width: 1216px) {
+      padding-left: 25%;
+  }
+  @media (max-width: 1060px) {
+      padding-left: 260px;
+  }
+  h2 {
+    margin-bottom: 3%;
+    font-weight: 100;
+  }
+  p {
+    padding: 0% 5% 0% 5%;
+  }
+
 }
