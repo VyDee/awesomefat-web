@@ -17,7 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFireModule } from '@angular/fire';
@@ -66,7 +66,8 @@ import { PaymentComponent } from './aws-service/coaching-service/payment/payment
     NotificationService,
     UserAuthService,
     ShoppingService,
-    AuthGuard
+    AuthGuard,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

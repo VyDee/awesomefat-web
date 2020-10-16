@@ -41,8 +41,9 @@ export class CoachingDetailComponent implements OnInit {
         imageUrl: this.service.imageUrl,
         price: this.service.price,
         isPaid: false,
-        date: '',
-        time: ''
+        purchasedDate: '',
+        time: '',
+        scheduleDate: ''
       };
       this.shoppingService.addOrder(order);
     }

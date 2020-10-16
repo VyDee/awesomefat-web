@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { ShoppingService } from 'src/app/service/shopping.service';
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit, DoCheck {
   constructor(
     private shoppingService: ShoppingService,
     public userAuthService: UserAuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +52,9 @@ export class CartComponent implements OnInit, DoCheck {
 
   changeToPaidOrder() {
     for (let i = 0; i < this.totalOrders.length; i++) {
+      const today = new Date();
       this.totalOrders[i].isPaid = true;
+      this.totalOrders[i].purchasedDate = this.datePipe.transform(today,'yyyy-MM-dd');
       this.shoppingService.updateOrder(this.totalOrders[i]);
     }
   }

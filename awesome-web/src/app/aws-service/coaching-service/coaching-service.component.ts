@@ -13,7 +13,7 @@ export class CoachingServiceComponent implements OnInit {
   @ViewChild(CartComponent) cart: CartComponent;
 
   coachingServiceArr = [];
-  totalNumber: number;
+  totalOrderNumber: number;
 
   constructor(
     private coachingService: CoachingService,
@@ -25,12 +25,16 @@ export class CoachingServiceComponent implements OnInit {
     this.coachingService.getCoachingServices().subscribe((services) => {
       this.coachingServiceArr = services;
     });
+    this.getOrderNumber();
+  }
+
+  getOrderNumber() {
     const userUID = localStorage.getItem('userUID');
     if (this.userAuthService.isAuthenticated())
     {
       this.shoppingService.getOrders().subscribe((orders) => {
         const totalOrders = orders.filter(x => x.userUID === userUID && x.isPaid === false);
-        this.totalNumber = totalOrders.length;
+        this.totalOrderNumber = totalOrders.length;
       });
     }
   }

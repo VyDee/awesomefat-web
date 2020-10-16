@@ -13,12 +13,6 @@ export class PaymentComponent implements OnInit, DoCheck {
   @ViewChild('paypal', {static : true}) paypalElement: ElementRef;
   id: number;
 
-  product = {
-    price: 0.1,
-    description: 'hello world',
-    img: '../../../assets/images/litman.png'
-  }
-
   paidFor = false;
   constructor(
     public cart: CartComponent,
@@ -26,7 +20,6 @@ export class PaymentComponent implements OnInit, DoCheck {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.cart.id;
     paypal
       .Buttons({
         createOrder: (data, actions) => {

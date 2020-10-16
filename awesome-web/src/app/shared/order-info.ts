@@ -4,7 +4,8 @@ export interface UserOrder {
   imageUrl: string;
   price: number;
   isPaid: boolean;
+  purchasedDate?: string;
   orderId?: string;
-  date?: string;
+  scheduleDate?: string;
   time?: string;
 }
