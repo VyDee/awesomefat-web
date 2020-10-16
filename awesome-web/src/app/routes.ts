@@ -1,4 +1,4 @@
-import { ProfileComponent } from './my-account/profile/profile.component';
+import { BookingComponent } from './my-account/booking/booking.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
 import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
@@ -29,8 +29,8 @@ export const appRoutes: Routes = [
     },
     { path: 'my-account', component: MyAccountComponent,
       children: [
-        {path: '', component: ProfileComponent},
-        {path: 'profile', component: ProfileComponent}
+        {path: '', component: BookingComponent},
+        {path: 'booking', component: BookingComponent}
       ]
     },
     { path: '', redirectTo: '/home', pathMatch: 'full'}

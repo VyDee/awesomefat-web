@@ -6,6 +6,6 @@ export interface UserOrder {
   isPaid: boolean;
   purchasedDate?: string;
   orderId?: string;
-  scheduleDate?: string;
+  scheduledDate?: string;
   time?: string;
 }

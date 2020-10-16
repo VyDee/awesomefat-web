@@ -43,7 +43,7 @@ export class CoachingDetailComponent implements OnInit {
         isPaid: false,
         purchasedDate: '',
         time: '',
-        scheduleDate: ''
+        scheduledDate: ''
       };
       this.shoppingService.addOrder(order);
     }

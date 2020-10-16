@@ -30,7 +30,7 @@ import { CartSummaryComponent } from './aws-service/coaching-service/cart-summar
 import { CartComponent } from './aws-service/coaching-service/cart/cart.component';
 import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
 import { MyAccountComponent } from './my-account/my-account.component';
-import { ProfileComponent } from './my-account/profile/profile.component';
+import { BookingComponent } from './my-account/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { ProfileComponent } from './my-account/profile/profile.component';
     CartComponent,
     PaymentComponent,
     MyAccountComponent,
-    ProfileComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
