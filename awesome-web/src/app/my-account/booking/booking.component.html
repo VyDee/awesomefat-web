@@ -1,4 +1,9 @@
 <div class="aws-content">
+  <h2>My Booking</h2>
+  <p class="booking-guide">
+    Please contact the business and <i>provide order id and user information</i> if you would like to cancel a section.
+    <b>Note that you can not cancel a section 24 hours before the scheduled date.</b>
+  </p>
   <div class="aws-coaching-body">
     <div class="container service-item" *ngFor="let booking of allBookingOrders">
       <div class="row">
@@ -7,10 +12,17 @@
         </div>
         <div class="col-sm">
           <h5>{{booking.name}}</h5>
-          <p>Price: {{booking.price}}</p>
-          <p>Purchased date: {{booking.purchasedDate}}</p>
-          <p>Meeting time: {{!!booking.time? booking.time : 'No time scheduled yet'}}</p>
-          <p>Meeting date: {{!!booking.scheduledDate? booking.scheduledDate : 'No date scheduled yet'}}</p>
+          <div class="row">
+            <div class="col-sm-5">
+              <p><b>Order Id:</b> {{booking.orderId}}</p>
+              <p><b>Price:</b> {{booking.price}}</p>
+              <p><b>Purchased date:</b> {{booking.purchasedDate}}</p>
+            </div>
+            <div class="col-sm-5">
+              <p><b>Meeting time:</b> {{!!booking.time? booking.time : 'No time scheduled yet'}}</p>
+              <p><b>Meeting date:</b> {{!!booking.scheduledDate? booking.scheduledDate : 'No date scheduled yet'}}</p>
+            </div>
+          </div>
         </div>
       </div>
       <!-- <div class="aws-button-center-position">

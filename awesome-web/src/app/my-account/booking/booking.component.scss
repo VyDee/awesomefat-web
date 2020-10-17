@@ -2,6 +2,7 @@
   widows: 100%;
   padding: 5%;
 }
+
 .service-item{
   padding: 3%;
   border: 1px solid black;
@@ -9,6 +10,9 @@
   margin-bottom: 4%;
   p{
     padding: 0%;
+  }
+  h5 {
+    margin-bottom: 3%;
   }
   img {
     width: 100%;
@@ -24,4 +28,15 @@
       cursor: pointer;
     }
   }
+}
+
+.aws-content {
+  h2 {
+    font-weight: 600;
+    margin: 3% 0% 0% 0%;
+  }
+}
+
+.booking-guide {
+  margin: 3% 0% 0% 0%;
 }
