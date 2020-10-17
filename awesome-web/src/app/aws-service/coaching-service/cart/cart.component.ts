@@ -26,7 +26,6 @@ export class CartComponent implements OnInit, DoCheck {
     this.cartNumberUpdate();
     this.id = +this.route.snapshot.params.id;
     this.userUID = localStorage.getItem('userUID');
-    console.log('I am in cart -- totalOrders', this.totalOrders);
   }
   ngDoCheck(): void {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -35,8 +34,6 @@ export class CartComponent implements OnInit, DoCheck {
     }
   }
   cartNumberUpdate() {
-    console.log(this.userAuthService.isAuthenticated());
-
     if (this.userAuthService.isAuthenticated())
     {
       this.shoppingService.getOrders().subscribe((orders) => {
@@ -45,7 +42,6 @@ export class CartComponent implements OnInit, DoCheck {
 
         const priceArr = this.totalOrders.map(t => t.price);
         this.totalPrice = priceArr.reduce((acc, cur) => acc + cur, 0);
-        console.log(this.totalPrice);
       });
     }
   }

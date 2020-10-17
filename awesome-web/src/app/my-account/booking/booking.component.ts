@@ -20,14 +20,12 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     this.getUserBookings();
     this.userUID = localStorage.getItem('userUID');
-    // console.log("all bookings", this.allBookingOrders);
   }
 
   getUserBookings() {
     if(this.userAuthService.isAuthenticated()) {
       this.shoppingService.getOrders().subscribe((orders) => {
         this.allBookingOrders = orders.filter(x => x.userUID === this.userUID && x.isPaid === true);
-        console.log(this.allBookingOrders);
       })
     }
   }

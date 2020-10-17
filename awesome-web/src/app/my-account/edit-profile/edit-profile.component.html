@@ -1,60 +1,95 @@
 <div class="aws-content">
   <h2>Edit your profile</h2>
   <form (ngSubmit)="onSubmit()" [formGroup]="userProfileForm">
-    <div class="form-group form-inline">
-      <label for="firstName">First Name</label>
-      <input type="text" id="firstName" name="firstName" class="form-control w-25" formControlName="firstName"
-      [ngClass]="{'is-invalid': isInvalidControl('firstName')}" maxlength="35">
-      <div class="invalid-feedback" *ngIf="isInvalidControl('firstName')">
-        <div *ngIf="userProfileForm.controls['firstName'].errors.blank">
-          Required
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="firstName">First Name</label>
+      <div class="col-sm-5">
+        <input type="text" id="firstName" name="firstName" class="form-control" formControlName="firstName"
+          [ngClass]="{'is-invalid': isInvalidControl('firstName')}" [attr.disabled]="isEdited ? null : true" maxlength="35">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('firstName')">
+          <div *ngIf="userProfileForm.controls['firstName'].errors.blank">
+            Required
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" name="lastName" class="form-control w-25" formControlName="lastName"
-      [ngClass]="{'is-invalid': isInvalidControl('lastName')}" maxlength="35">
-      <div class="invalid-feedback" *ngIf="isInvalidControl('lastName')">
-        <div *ngIf="userProfileForm.controls['lastName'].errors.blank">
-          Required
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="lastName">Last Name</label>
+      <div class="col-sm-5">
+        <input class="col-sm-2 col-form-label" type="text" id="lastName" name="lastName" class="form-control" formControlName="lastName"
+        [ngClass]="{'is-invalid': isInvalidControl('lastName')}" [attr.disabled]="isEdited ? null : true" maxlength="35">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('lastName')">
+          <div *ngIf="userProfileForm.controls['lastName'].errors.blank">
+            Required
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="phoneNumber">Phone number</label>
-      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control w-25" formControlName="phoneNumber"
-      [ngClass]="{'is-invalid': isInvalidControl('phoneNumber')}" maxlength="11">
-      <div class="invalid-feedback" *ngIf="isInvalidControl('phoneNumber')">
-        <div *ngIf="userProfileForm.controls['phoneNumber'].errors.blank">
-          Required
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="phoneNumber">Phone number</label>
+      <div class="col-sm-5">
+        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" formControlName="phoneNumber"
+        [ngClass]="{'is-invalid': isInvalidControl('phoneNumber')}" [attr.disabled]="isEdited ? null : true" maxlength="11">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('phoneNumber')">
+          <div *ngIf="userProfileForm.controls['phoneNumber'].errors.blank">
+            Required
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group form-inline">
-      <label for="userEmail">Email</label>
-      <input type="email" id="userEmail" name="userEmail" class="form-control w-50" formControlName="userEmail"
-      [ngClass]="{'is-invalid': isInvalidControl('userEmail')}" maxlength="80">
-      <div class="invalid-feedback" *ngIf="isInvalidControl('userEmail')">
-        <div *ngIf="userProfileForm.controls['userEmail'].errors.required">
-          Required
-        </div>
-        <div *ngIf="userProfileForm.controls['userEmail'].errors.email || userProfileForm.controls['userEmail'].errors.pattern">
-          Invalid email address
-        </div>
-      </div>
-    </div>
-    <div class="form-group form-inline">
-      <label for="password">Password</label>
-      <input type="text" id="password" name="password" class="form-control w-50" formControlName="password"
-      [ngClass]="{'is-invalid': isInvalidControl('password')}" maxlength="80">
-      <div class="invalid-feedback" *ngIf="isInvalidControl('password')">
-        <div *ngIf="userProfileForm.controls['password'].errors.blank">
-          Required
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="userEmail">Email</label>
+      <div class="col-sm-5">
+        <input type="email" id="userEmail" name="userEmail" class="form-control" formControlName="userEmail"
+        [ngClass]="{'is-invalid': isInvalidControl('userEmail')}" [attr.disabled]="isEdited ? null : true" maxlength="80">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('userEmail')">
+          <div *ngIf="userProfileForm.controls['userEmail'].errors.blank">
+            Required
+          </div>
+          <div *ngIf="userProfileForm.controls['userEmail'].errors.email || userProfileForm.controls['userEmail'].errors.pattern">
+            Invalid email address
+          </div>
         </div>
       </div>
     </div>
-
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="oldPassword">Password</label>
+      <div class="col-sm-5">
+        <input type="password" id="oldPassword" name="oldPassword" class="form-control" formControlName="oldPassword"
+        [ngClass]="{'is-invalid': isInvalidControl('oldPassword')}" disabled maxlength="80">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('oldPassword')">
+          <div *ngIf="userProfileForm.controls['oldPassword'].errors.blank">
+            Required
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <button type="button" class="btn btn-link" *ngIf="isEdited && !isResetPassword" (click)="resetPassword()">Reset password</button>
+        <button type="button" class="btn btn-link" *ngIf="isEdited && isResetPassword" (click)="resetPassword()">Cancel</button>
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="isEdited && isResetPassword">
+      <label class="col-sm-2 col-form-label" for="newPassword">New password</label>
+      <div class="col-sm-5">
+        <input type="password" id="newPassword" name="newPassword" class="form-control" formControlName="newPassword"
+        [ngClass]="{'is-invalid': isInvalidControl('newPassword')}" maxlength="80">
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="isEdited && isResetPassword">
+      <label class="col-sm-2 col-form-label" for="confirmedPassword">Retype password</label>
+      <div class="col-sm-5">
+        <input type="password" id="confirmedPassword" name="confirmedPassword" class="form-control" formControlName="confirmedPassword"
+        [ngClass]="{'is-invalid': isInvalidControl('confirmedPassword')}" maxlength="80">
+        <!-- {{userProfileForm.errors.confirmedValidator}} -->
+        <div class="invalid-feedback">
+          New password don't match
+        </div>
+      </div>
+    </div>
+    <div class="text-center aws-submit-button" >
+      <button type="submit" *ngIf="!isEdited">Edit Profile</button>
+      <button type="submit" *ngIf="isEdited">Update Profile</button>
+    </div>
   </form>
 </div>
 
