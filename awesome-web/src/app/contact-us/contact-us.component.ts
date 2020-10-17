@@ -37,9 +37,9 @@ export class ContactUsComponent implements OnInit {
 
   private createForm() {
     this.userForm = this.formBuilder.group({
-      firstName: [this.userContactMessage.firstName, [StringValidator.noBlank, Validators.required, Validators.maxLength(100)]],
-      lastName: [this.userContactMessage.lastName, [StringValidator.noBlank, Validators.required, Validators.maxLength(100)]],
-      companyName: [this.userContactMessage.companyName, [StringValidator.noBlank, Validators.required, Validators.maxLength(100)]],
+      firstName: [this.userContactMessage.firstName, [StringValidator.noBlank, Validators.maxLength(100)]],
+      lastName: [this.userContactMessage.lastName, [StringValidator.noBlank, Validators.maxLength(100)]],
+      companyName: [this.userContactMessage.companyName, [StringValidator.noBlank, Validators.maxLength(100)]],
       userEmail: [
         this.userContactMessage.userEmail,
         [

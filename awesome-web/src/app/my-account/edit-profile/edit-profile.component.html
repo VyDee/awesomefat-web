@@ -1,0 +1,60 @@
+<div class="aws-content">
+  <h2>Edit your profile</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="userProfileForm">
+    <div class="form-group form-inline">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" class="form-control w-25" formControlName="firstName"
+      [ngClass]="{'is-invalid': isInvalidControl('firstName')}" maxlength="35">
+      <div class="invalid-feedback" *ngIf="isInvalidControl('firstName')">
+        <div *ngIf="userProfileForm.controls['firstName'].errors.blank">
+          Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-inline">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" class="form-control w-25" formControlName="lastName"
+      [ngClass]="{'is-invalid': isInvalidControl('lastName')}" maxlength="35">
+      <div class="invalid-feedback" *ngIf="isInvalidControl('lastName')">
+        <div *ngIf="userProfileForm.controls['lastName'].errors.blank">
+          Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-inline">
+      <label for="phoneNumber">Phone number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control w-25" formControlName="phoneNumber"
+      [ngClass]="{'is-invalid': isInvalidControl('phoneNumber')}" maxlength="11">
+      <div class="invalid-feedback" *ngIf="isInvalidControl('phoneNumber')">
+        <div *ngIf="userProfileForm.controls['phoneNumber'].errors.blank">
+          Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-inline">
+      <label for="userEmail">Email</label>
+      <input type="email" id="userEmail" name="userEmail" class="form-control w-50" formControlName="userEmail"
+      [ngClass]="{'is-invalid': isInvalidControl('userEmail')}" maxlength="80">
+      <div class="invalid-feedback" *ngIf="isInvalidControl('userEmail')">
+        <div *ngIf="userProfileForm.controls['userEmail'].errors.required">
+          Required
+        </div>
+        <div *ngIf="userProfileForm.controls['userEmail'].errors.email || userProfileForm.controls['userEmail'].errors.pattern">
+          Invalid email address
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-inline">
+      <label for="password">Password</label>
+      <input type="text" id="password" name="password" class="form-control w-50" formControlName="password"
+      [ngClass]="{'is-invalid': isInvalidControl('password')}" maxlength="80">
+      <div class="invalid-feedback" *ngIf="isInvalidControl('password')">
+        <div *ngIf="userProfileForm.controls['password'].errors.blank">
+          Required
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+

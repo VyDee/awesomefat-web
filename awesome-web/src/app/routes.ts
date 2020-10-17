@@ -1,3 +1,4 @@
+import { EditProfileComponent } from './my-account/edit-profile/edit-profile.component';
 import { BookingComponent } from './my-account/booking/booking.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
@@ -30,7 +31,8 @@ export const appRoutes: Routes = [
     { path: 'my-account', component: MyAccountComponent,
       children: [
         {path: '', component: BookingComponent},
-        {path: 'booking', component: BookingComponent}
+        {path: 'booking', component: BookingComponent},
+        {path: 'edit-profile', component: EditProfileComponent}
       ]
     },
     { path: '', redirectTo: '/home', pathMatch: 'full'}

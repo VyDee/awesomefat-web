@@ -31,6 +31,7 @@ import { CartComponent } from './aws-service/coaching-service/cart/cart.componen
 import { PaymentComponent } from './aws-service/coaching-service/payment/payment.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { BookingComponent } from './my-account/booking/booking.component';
+import { EditProfileComponent } from './my-account/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BookingComponent } from './my-account/booking/booking.component';
     CartComponent,
     PaymentComponent,
     MyAccountComponent,
-    BookingComponent
+    BookingComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

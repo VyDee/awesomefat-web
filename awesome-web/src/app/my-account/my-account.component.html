@@ -4,7 +4,7 @@
     <h5>{{userAuthService.currentUser.firstName}}, {{userAuthService.currentUser.lastName}}</h5>
       <div class="list-group">
           <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/booking']">My booking</a>
-          <a class="list-group-item list-group-item-action">Edit my profile</a>
+          <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/edit-profile']">Edit my profile</a>
       </div>
   </div>
   <router-outlet></router-outlet>
