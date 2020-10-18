@@ -41,15 +41,7 @@
       <label class="col-sm-2 col-form-label" for="userEmail">Email</label>
       <div class="col-sm-5">
         <input type="email" id="userEmail" name="userEmail" class="form-control" formControlName="userEmail"
-        [ngClass]="{'is-invalid': isInvalidControl('userEmail')}" [attr.disabled]="isEdited ? null : true" maxlength="80">
-        <div class="invalid-feedback" *ngIf="isInvalidControl('userEmail')">
-          <div *ngIf="userProfileForm.controls['userEmail'].errors.blank">
-            Required
-          </div>
-          <div *ngIf="userProfileForm.controls['userEmail'].errors.email || userProfileForm.controls['userEmail'].errors.pattern">
-            Invalid email address
-          </div>
-        </div>
+        [ngClass]="{'is-invalid': isInvalidControl('userEmail')}" disabled maxlength="80">
       </div>
     </div>
     <div class="form-group row">
@@ -72,17 +64,21 @@
       <label class="col-sm-2 col-form-label" for="newPassword">New password</label>
       <div class="col-sm-5">
         <input type="password" id="newPassword" name="newPassword" class="form-control" formControlName="newPassword"
-        [ngClass]="{'is-invalid': isInvalidControl('newPassword')}" maxlength="80">
+        [ngClass]="{'is-invalid': isInvalidControl('newPassword')}">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('newPassword')">
+            Password needs to have at least 6 characters
+        </div>
       </div>
     </div>
     <div class="form-group row" *ngIf="isEdited && isResetPassword">
       <label class="col-sm-2 col-form-label" for="confirmedPassword">Retype password</label>
       <div class="col-sm-5">
         <input type="password" id="confirmedPassword" name="confirmedPassword" class="form-control" formControlName="confirmedPassword"
-        [ngClass]="{'is-invalid': isInvalidControl('confirmedPassword')}" maxlength="80">
-        <!-- {{userProfileForm.errors.confirmedValidator}} -->
-        <div class="invalid-feedback">
-          New password don't match
+        [ngClass]="{'is-invalid': isInvalidControl('confirmedPassword')}">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('confirmedPassword')">
+          <div *ngIf="userProfileForm.controls['confirmedPassword'].errors?.confirmedValidator">
+            New password don't match
+          </div>
         </div>
       </div>
     </div>

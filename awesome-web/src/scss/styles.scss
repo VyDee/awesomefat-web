@@ -116,3 +116,25 @@ $aws-font:"Open Sans MS", "Open Sans", cursive;
   }
 
 }
+
+//toaster
+#toast-container {
+  .toast-success{
+    background-color: #D4EDDA;
+    color:darken(#D4EDDA, 50%);
+    background-image: none;
+  }
+  .toast-error{
+    background-color: #F8D7DA;
+    color:darken(#F8D7DA, 50%);
+    background-image: none;
+  }
+  .toast-info{
+    background-color: #FFF3CD;
+    color:darken(#FFF3CD, 50%);
+    background-image: none;
+  }
+
+}
+
+

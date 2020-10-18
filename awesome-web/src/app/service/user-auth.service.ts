@@ -54,7 +54,7 @@ export class UserAuthService{
     this.usersCollection.doc(id).set(user);
   }
 
-  updateUsers(user) {
+  updateUsers(user: UserInfo) {
     this.userDoc = this.afs.doc(`users/${user.userId}`);
     this.userDoc.update(user);
   }
@@ -74,6 +74,10 @@ export class UserAuthService{
         }
       }, (error) => {
         if (error.code === 'auth/user-not-found') {
+          this.notificationService.showError('User is not found. Please check your email, password or create a new user account');
+        } else if (error.code === 'auth/wrong-password') {
+          this.notificationService.showError('The password is invalid. Please check your password');
+        } else if (error.code ==='auth/user-not-found') {
           this.notificationService.showError('User is not found. Please check your email, password or create a new user account');
         }
       });
