@@ -32,10 +32,10 @@
         </div>
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="#" [routerLink]="['/contact-us']">Contact Us</a>
+        <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
       </li>
       <li class="nav-item" *ngIf="!userAuthService.isAuthenticated()">
-        <a class="nav-link" href="#" [routerLink]="['/log-in']">Log in</a>
+        <a class="nav-link" [routerLink]="['/log-in']">Log in</a>
       </li>
       <div class="dropdown" *ngIf="userAuthService.currentUser">
         <button class="dropdown-toggle nav-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -51,7 +51,7 @@ export class UserAuthService{
   addUsers(user: UserInfo) {
     const id = this.afs.createId();
     user.userId = id;
-    this.usersCollection.doc(id).set(user);
+    this.usersCollection.add(user);
   }
 
   updateUsers(user: UserInfo) {
