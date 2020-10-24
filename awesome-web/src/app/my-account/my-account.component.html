@@ -5,6 +5,7 @@
       <div class="list-group">
           <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/booking']">My booking</a>
           <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/edit-profile']">Edit my profile</a>
+          <a class="list-group-item list-group-item-action" *ngIf='userAuthService.currentUser.role === "admin"'>Add Coaching Service</a>
       </div>
   </div>
   <router-outlet></router-outlet>

@@ -106,7 +106,9 @@ export class EditProfileComponent implements OnInit {
             this.userAuthService.updateUsers(this.userAuthService.currentUser);
             this.notificationService.showSuccess('You have successfully updated your information and password');
           }).catch((error) => {
-            // Failed
+            if (error.code === 'auth/user-not-found') {
+              console.log(error);
+            }
           });
         });
       } else {

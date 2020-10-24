@@ -1,3 +1,4 @@
+import { RefundService } from './service/refund.service';
 import { AuthGuard } from './service/auth.guard';
 import { ShoppingService } from './service/shopping.service';
 import { UserAuthService } from './service/user-auth.service';
@@ -72,6 +73,7 @@ import { EditProfileComponent } from './my-account/edit-profile/edit-profile.com
     NotificationService,
     UserAuthService,
     ShoppingService,
+    RefundService,
     AuthGuard,
     DatePipe
   ],

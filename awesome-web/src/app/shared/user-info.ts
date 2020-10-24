@@ -6,4 +6,5 @@ export interface UserInfo {
   password: string;
   userId?: string;
   userUID?: string;
+  role?: string;
 }
