@@ -1,6 +1,6 @@
 <div class="aws-content">
   <h2>Add new coach service</h2>
-  <form (ngSubmit)="onSubmit()" [formGroup]="addServiceForm">
+  <form (ngSubmit)="onSubmit(addServiceForm.value)" [formGroup]="addServiceForm">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="serviceName">Service Name</label>
       <div class="col-sm-5">
@@ -11,7 +11,7 @@
             Required
           </div>
           <div *ngIf="addServiceForm.controls['serviceName'].errors.minlength">
-            Name needs to be at least 10 characters
+            Name needs to be at least 5 characters
           </div>
         </div>
       </div>
@@ -39,6 +39,16 @@
         <div class="invalid-feedback" *ngIf="isInvalidControl('serviceDetail')">
             Required
         </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Select file to upload</label>
+      <div class="col-sm-5">
+        <input type="file" accept="image/*" class="form-control" formControlName="imageUrl"
+        [ngClass]="{'is-invalid': isInvalidControl('imageUrl')}" (change)="showPreview($event)">
+        <div class="invalid-feedback" *ngIf="isInvalidControl('imageUrl')">
+          Required
+      </div>
       </div>
     </div>
     <div class="aws-submit-button text-center">

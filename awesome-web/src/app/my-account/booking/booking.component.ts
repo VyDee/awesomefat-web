@@ -50,7 +50,11 @@ export class BookingComponent implements OnInit {
 
   getBuyerName(userUID): string {
     const buyers = this.usersArray.filter(x => x.userUID === userUID);
-    return buyers[0].firstName + ' ' + buyers[0].lastName;
+    if(buyers) {
+      return buyers[0].firstName + ' ' + buyers[0].lastName;
+    } else {
+      return '';
+    }
   }
 
   deleteOrder(order: UserOrder){

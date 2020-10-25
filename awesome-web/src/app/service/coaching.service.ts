@@ -1,9 +1,8 @@
-import { filter, map } from 'rxjs/operators';
-
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { CoachingServiceInterface } from './../shared/product-info';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,12 @@ export class CoachingService {
       const data = a.payload.doc.data() as CoachingServiceInterface;
       const id = a.payload.doc.id;
       return { id, ...data };
-    })), map((service) => {return service.find(x => x.id === id)}));
+    })), map((service) =>service.find(x => x.id === id)));
     return service;
+  }
+
+  addCoachingService(coachingService) {
+    coachingService.id = Math.floor(Math.random() * Math.floor(100));
+    this.coachingServiceCollection.add(coachingService);
   }
 }
