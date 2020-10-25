@@ -1,7 +1,5 @@
 import { NotificationService } from './../../service/notification.service';
 import { PasswordValidators } from './../../validators/password.validator';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { StringValidator } from './../../validators/string.validator';
 import { UserAuthService } from './../../service/user-auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

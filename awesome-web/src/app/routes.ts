@@ -1,3 +1,4 @@
+import { AddCoachServiceComponent } from './my-account/add-coach-service/add-coach-service.component';
 import { EditProfileComponent } from './my-account/edit-profile/edit-profile.component';
 import { BookingComponent } from './my-account/booking/booking.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -32,7 +33,8 @@ export const appRoutes: Routes = [
       children: [
         {path: '', component: BookingComponent},
         {path: 'booking', component: BookingComponent},
-        {path: 'edit-profile', component: EditProfileComponent}
+        {path: 'edit-profile', component: EditProfileComponent},
+        {path: 'add-coachService', component: AddCoachServiceComponent}
       ]
     },
     { path: '', redirectTo: '/home', pathMatch: 'full'}

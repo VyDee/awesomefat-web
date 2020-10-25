@@ -33,6 +33,7 @@ import { PaymentComponent } from './aws-service/coaching-service/payment/payment
 import { MyAccountComponent } from './my-account/my-account.component';
 import { BookingComponent } from './my-account/booking/booking.component';
 import { EditProfileComponent } from './my-account/edit-profile/edit-profile.component';
+import { AddCoachServiceComponent } from './my-account/add-coach-service/add-coach-service.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EditProfileComponent } from './my-account/edit-profile/edit-profile.com
     PaymentComponent,
     MyAccountComponent,
     BookingComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    AddCoachServiceComponent
   ],
   imports: [
     BrowserModule,
