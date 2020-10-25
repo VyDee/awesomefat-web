@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderRefund } from './../../shared/order-refund';
 import { RefundService } from './../../service/refund.service';
 import { UserInfo } from './../../shared/user-info';
@@ -15,19 +16,30 @@ export class BookingComponent implements OnInit {
   allBookingOrders: UserOrder[] = [];
   usersArray: UserInfo[] = [];
   userUID: string;
+  updateSessionForm: FormGroup;
+  meetingTime: any;
+  meetingDate: any;
 
   constructor(
     private shoppingService: ShoppingService,
     public userAuthService: UserAuthService,
-    private refundService: RefundService
+    private refundService: RefundService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.getUserBookings();
     this.getAllUsers();
     this.userUID = localStorage.getItem('userUID');
+    this.createForm();
   }
 
+  private createForm() {
+    this.updateSessionForm = this.formBuilder.group({
+      meetingTime: [this.meetingTime, Validators.required],
+      meetingDate: [this.meetingDate, Validators.required]
+    });
+  }
   getUserBookings(): any {
     if (this.userAuthService.isAuthenticated()) {
       if (this.userAuthService.currentUser.role === 'admin'){
@@ -50,7 +62,7 @@ export class BookingComponent implements OnInit {
 
   getBuyerName(userUID): string {
     const buyers = this.usersArray.filter(x => x.userUID === userUID);
-    if(buyers) {
+    if (buyers) {
       return buyers[0].firstName + ' ' + buyers[0].lastName;
     } else {
       return '';
@@ -68,5 +80,18 @@ export class BookingComponent implements OnInit {
     };
     this.refundService.addRefund(refundOrder);
     this.shoppingService.deleteOrder(order);
+  }
+
+  passBookingInfoForModal(booking) {
+    this.meetingTime = booking.time ? booking.time : '--';
+    this.meetingDate = booking.scheduledDate ? booking.scheduledDate : '--';
+    this.updateSessionForm.setValue({
+      meetingTime: this.meetingTime,
+      meetingDate: this.meetingDate
+    });
+  }
+
+  updateSessionInfo() {
+    console.log(this.updateSessionForm.controls.meetingTime.value);
   }
 }

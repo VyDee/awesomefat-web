@@ -5,7 +5,7 @@
       <label class="col-sm-2 col-form-label" for="serviceName">Service Name</label>
       <div class="col-sm-5">
         <input type="text" id="serviceName" name="serviceName" class="form-control" formControlName="serviceName"
-          [ngClass]="{'is-invalid': isInvalidControl('serviceName')}" minlength="10">
+          [ngClass]="{'is-invalid': isInvalidControl('serviceName')}" minlength="5">
         <div class="invalid-feedback" *ngIf="isInvalidControl('serviceName')">
           <div *ngIf="addServiceForm.controls['serviceName'].errors.blank">
             Required

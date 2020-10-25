@@ -83,7 +83,7 @@ export class AddCoachServiceComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             this.service.name = formValue.serviceName;
             this.service.detail = formValue.serviceDetail;
-            this.service.price = formValue.price;
+            this.service.price = +formValue.price; //convert price to number
             this.service.imageUrl = url;
             this.coachingService.addCoachingService(this.service);
             this.notificationService.showSuccess('New service has been sucessfully added to the database');

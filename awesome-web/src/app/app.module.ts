@@ -34,6 +34,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { BookingComponent } from './my-account/booking/booking.component';
 import { EditProfileComponent } from './my-account/edit-profile/edit-profile.component';
 import { AddCoachServiceComponent } from './my-account/add-coach-service/add-coach-service.component';
+import { Time24To12Pipe } from './shared/time24-to12.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddCoachServiceComponent } from './my-account/add-coach-service/add-coa
     MyAccountComponent,
     BookingComponent,
     EditProfileComponent,
-    AddCoachServiceComponent
+    AddCoachServiceComponent,
+    Time24To12Pipe
   ],
   imports: [
     BrowserModule,
