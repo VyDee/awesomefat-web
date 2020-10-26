@@ -72,9 +72,6 @@ export class AddCoachServiceComponent implements OnInit {
   onSubmit(formValue) {
     this.submitted = true;
     this.errors.emit(Object.keys(this.addServiceForm.controls).filter(key => this.addServiceForm.get(key).invalid));
-    if (!this.addServiceForm.valid) {
-      return;
-    }
     if (this.addServiceForm.valid) {
       let filePath = `coaching-service/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);

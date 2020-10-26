@@ -45,6 +45,7 @@ export class ShoppingService {
    }
 
    updateOrder(order: UserOrder) {
+     console.log(order);
     this.shoppingOrderDoc = this.afs.doc(`orders/${order.orderId}`);
     this.shoppingOrderDoc.update(order);
    }

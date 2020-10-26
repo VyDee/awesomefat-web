@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col-sm-5">
               <p><b>Order Id: </b> {{booking.orderId}}</p>
-              <p><b>Meeting date: </b> {{booking.scheduledDate? booking.scheduledDate : ''}}</p>
+              <p><b>Meeting date: </b> {{booking.scheduledDate? booking.scheduledDate : '--'}}</p>
               <p><b>Purchased date:</b> {{booking.purchasedDate}}</p>
             </div>
             <div class="col-sm-5">
@@ -26,15 +26,14 @@
           </div>
         </div>
       </div>
-
-      <div class="container">
+      <div *ngIf="userAuthService.currentUser.role === 'admin'">
         <div class="col-md-12 text-center">
           <button type="button" class="btn btn-secondary text-center mr-3" *ngIf="userAuthService.currentUser.role === 'admin'"
-           data-target="#updateMeetingModal" data-toggle="modal" (click)="passBookingInfoForModal(booking)">
-            Update Meeting Information
+            data-target="#updateMeetingModal" data-toggle="modal" (click)="passBookingInfoForModal(booking)">
+            Update Meeting Time
           </button>
           <button type="button" class="btn btn-outline-danger text-center" *ngIf="userAuthService.currentUser.role === 'admin'"
-           data-target="#deleteSessionModal" data-toggle="modal">
+            data-target="#deleteSessionModal" data-toggle="modal">
             Delete Session
           </button>
         </div>
@@ -70,9 +69,9 @@
                 </button>
               </div>
               <div class="modal-body update-meeting-body">
-                <form (ngSubmit)="onSubmit()" [formGroup]="updateSessionForm">
+                <form (ngSubmit)="updateSessionInfo()" [formGroup]="updateSessionForm">
                   <div class="form-group">
-                    <label for="meetingDate" class="col-2 col-form-label">Meeting date</label>
+                    <label for="meetingDate" class="col-form-label">Meeting date</label>
                     <div class="col-10">
                       <input class="form-control" type="date" id="meetingDate" name="meetingDate" formControlName="meetingDate">
                     </div>

@@ -1,11 +1,13 @@
+import { NotificationService } from './../../service/notification.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderRefund } from './../../shared/order-refund';
 import { RefundService } from './../../service/refund.service';
 import { UserInfo } from './../../shared/user-info';
 import { UserOrder } from './../../shared/order-info';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ShoppingService } from 'src/app/service/shopping.service';
 import { UserAuthService } from 'src/app/service/user-auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'booking',
@@ -19,12 +21,16 @@ export class BookingComponent implements OnInit {
   updateSessionForm: FormGroup;
   meetingTime: any;
   meetingDate: any;
+  currentOrderId: string;
+
 
   constructor(
     private shoppingService: ShoppingService,
     public userAuthService: UserAuthService,
     private refundService: RefundService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +46,7 @@ export class BookingComponent implements OnInit {
       meetingDate: [this.meetingDate, Validators.required]
     });
   }
+
   getUserBookings(): any {
     if (this.userAuthService.isAuthenticated()) {
       if (this.userAuthService.currentUser.role === 'admin'){
@@ -83,8 +90,9 @@ export class BookingComponent implements OnInit {
   }
 
   passBookingInfoForModal(booking) {
-    this.meetingTime = booking.time ? booking.time : '--';
-    this.meetingDate = booking.scheduledDate ? booking.scheduledDate : '--';
+    this.currentOrderId = booking.orderId;
+    this.meetingTime = booking.time ? booking.time : '';
+    this.meetingDate = booking.scheduledDate ? booking.scheduledDate : '';
     this.updateSessionForm.setValue({
       meetingTime: this.meetingTime,
       meetingDate: this.meetingDate
@@ -92,6 +100,12 @@ export class BookingComponent implements OnInit {
   }
 
   updateSessionInfo() {
-    console.log(this.updateSessionForm.controls.meetingTime.value);
+    const booking = this.allBookingOrders.filter(x => x.orderId === this.currentOrderId)[0];
+    booking.time = this.updateSessionForm.controls.meetingTime.value;
+    booking.scheduledDate = this.updateSessionForm.controls.meetingDate.value;
+
+    this.shoppingService.updateOrder(booking);
+    this.notificationService.showSuccess('The meeting time and date has been successfully updated');
+
   }
 }
