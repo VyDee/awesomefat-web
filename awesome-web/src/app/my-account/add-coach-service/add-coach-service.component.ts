@@ -91,6 +91,8 @@ export class AddCoachServiceComponent implements OnInit {
           });
         })
       ).subscribe();
+    } else {
+      return;
     }
   }
 
