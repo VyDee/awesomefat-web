@@ -4,8 +4,43 @@
     Please contact the business and <i>provide order id and user information</i> if you would like to cancel a section.
     <b>Note that you can not cancel a section 24 hours before the scheduled date.</b>
   </p>
+  <div class="filter-heading">
+    <div class="row" >
+      <div class="col-sm-2">
+          <h6>Filter By</h6>
+      </div>
+      <div class="col-sm-3">
+        <select class="aws-select-options" (change)="setFilterCategory($event)">
+          <option value="" disable selected>Pick an option to filter</option>
+          <option value="service">Service</option>
+          <option value="price">Price</option>
+          <option value="meetingDate">Meeting Date</option>
+          <option value="purchasedDate">Purchased Date</option>
+        </select>
+      </div>
+      <!--Product filter-->
+      <div class="col-sm-3" *ngIf="isCategoryChosen">
+        <select class="aws-select-options" (change)="setfilterOptions($event)" *ngIf="(filterCategory === 'service')">
+          <option value="" disable selected>All products</option>
+          <option value="{{service.name}}" *ngFor="let service of serviceTypeArr">{{service.name}}</option>
+        </select>
+        <select class="aws-select-options" (change)="setfilterOptions($event)" *ngIf="(filterCategory !=='service')">
+          <option value="" disable selected>Choose a filter order</option>
+          <option value="asc">Asc</option>
+          <option value="desc">Desc</option>
+        </select>
+      </div>
+      <div class="col-sm">
+        <button type="button" class="btn btn-outline-secondary"
+        *ngIf="isCategoryChosen && (filterCategory !== '')" (click)="onSort()">
+          Submit
+      </button>
+      </div>
+    </div>
+  </div>
+
   <div class="aws-coaching-body">
-    <div class="container service-item" *ngFor="let booking of allBookingOrders">
+    <div class="container service-item" *ngFor="let booking of filterArray">
       <div class="row">
         <div class="col-sm-2">
           <img src="{{booking.imageUrl}}">

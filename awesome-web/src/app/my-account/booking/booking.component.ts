@@ -1,3 +1,4 @@
+import { CoachingService } from './../../service/coaching.service';
 import { NotificationService } from './../../service/notification.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderRefund } from './../../shared/order-refund';
@@ -24,13 +25,21 @@ export class BookingComponent implements OnInit {
   currentOrderId: string;
 
 
+  // Filter
+  filterCategory: string;
+  isCategoryChosen = false;
+  filterOption: string;
+  serviceTypeArr = []; //this is only for getting the type of services for the select option
+  filterArray = [];
+
+
   constructor(
     private shoppingService: ShoppingService,
     public userAuthService: UserAuthService,
     private refundService: RefundService,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
-    private datePipe: DatePipe
+    private coachingService: CoachingService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +47,9 @@ export class BookingComponent implements OnInit {
     this.getAllUsers();
     this.userUID = localStorage.getItem('userUID');
     this.createForm();
+    this.coachingService.getCoachingServices().subscribe((services) => {
+      this.serviceTypeArr = services;
+    });
   }
 
   private createForm() {
@@ -52,10 +64,12 @@ export class BookingComponent implements OnInit {
       if (this.userAuthService.currentUser.role === 'admin'){
           this.shoppingService.getOrders().subscribe((orders) => {
           this.allBookingOrders = orders as UserOrder[];
+          this.filterArray = [...this.allBookingOrders];
         });
       } else {
           this.shoppingService.getOrders().subscribe((orders) => {
           this.allBookingOrders = orders.filter(x => x.userUID === this.userUID && x.isPaid === true) as UserOrder[];
+          this.filterArray = [...this.allBookingOrders];
         });
       }
     }
@@ -106,6 +120,26 @@ export class BookingComponent implements OnInit {
 
     this.shoppingService.updateOrder(booking);
     this.notificationService.showSuccess('The meeting time and date has been successfully updated');
+
+  }
+
+  setFilterCategory(event: any) {
+    this.filterCategory = event.target.value;
+    this.isCategoryChosen = this.filterCategory ? true : false;
+  }
+
+  setfilterOptions(event: any) {
+    this.filterOption = event.target.value;
+  }
+
+  onSort(){
+    console.log(this.filterCategory);
+    console.log(this.filterOption);
+    if(this.filterCategory === 'service') {
+      let filterService = [... this.allBookingOrders];
+      filterService = filterService.filter(x => x.name === this.filterOption);
+      this.filterArray = filterService;
+    }
 
   }
 }
