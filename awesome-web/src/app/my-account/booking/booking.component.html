@@ -11,7 +11,7 @@
       </div>
       <div class="col-sm-3">
         <select class="aws-select-options" (change)="setFilterCategory($event)">
-          <option value="" disable selected>Pick an option to filter</option>
+          <option value="" selected>Pick an option to filter</option>
           <option value="service">Service</option>
           <option value="price">Price</option>
           <option value="meetingDate">Meeting Date</option>
@@ -21,11 +21,11 @@
       <!--Product filter-->
       <div class="col-sm-3" *ngIf="isCategoryChosen">
         <select class="aws-select-options" (change)="setfilterOptions($event)" *ngIf="(filterCategory === 'service')">
-          <option value="" disable selected>All products</option>
+          <option value="all" selected>All products</option>
           <option value="{{service.name}}" *ngFor="let service of serviceTypeArr">{{service.name}}</option>
         </select>
         <select class="aws-select-options" (change)="setfilterOptions($event)" *ngIf="(filterCategory !=='service')">
-          <option value="" disable selected>Choose a filter order</option>
+          <option value="all" disable selected>Choose a filter order</option>
           <option value="asc">Asc</option>
           <option value="desc">Desc</option>
         </select>
@@ -68,7 +68,7 @@
             Update Meeting Time
           </button>
           <button type="button" class="btn btn-outline-danger text-center" *ngIf="userAuthService.currentUser.role === 'admin'"
-            data-target="#deleteSessionModal" data-toggle="modal">
+            data-target="#deleteSessionModal" data-toggle="modal" (click)="passBookingInfoForModal(booking)">
             Delete Session
           </button>
         </div>
@@ -87,7 +87,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-danger" (click)="deleteOrder(booking)" data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-outline-danger" (click)="deleteOrder()" data-dismiss="modal">Delete</button>
               </div>
             </div>
           </div>

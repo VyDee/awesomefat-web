@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { CoachingService } from './../../service/coaching.service';
 import { NotificationService } from './../../service/notification.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,8 +29,8 @@ export class BookingComponent implements OnInit {
   // Filter
   filterCategory: string;
   isCategoryChosen = false;
-  filterOption: string;
-  serviceTypeArr = []; //this is only for getting the type of services for the select option
+  filterOption = 'all';
+  serviceTypeArr = []; // this is only for getting the type of services for the select option
   filterArray = [];
 
 
@@ -90,17 +91,18 @@ export class BookingComponent implements OnInit {
     }
   }
 
-  deleteOrder(order: UserOrder){
+  deleteOrder(){
+    const booking = this.allBookingOrders.filter(x => x.orderId === this.currentOrderId)[0];
     const refundOrder: OrderRefund = {
-      userUID : order.userUID,
-      orderId: order.orderId,
-      imageUrl: order.imageUrl,
-      price: order.price,
-      purchasedDate: order.purchasedDate,
+      userUID : booking.userUID,
+      orderId: booking.orderId,
+      imageUrl: booking.imageUrl,
+      price: booking.price,
+      purchasedDate: booking.purchasedDate,
       status: 'Refund'
     };
     this.refundService.addRefund(refundOrder);
-    this.shoppingService.deleteOrder(order);
+    this.shoppingService.deleteOrder(booking);
   }
 
   passBookingInfoForModal(booking) {
@@ -133,13 +135,28 @@ export class BookingComponent implements OnInit {
   }
 
   onSort(){
-    console.log(this.filterCategory);
-    console.log(this.filterOption);
-    if(this.filterCategory === 'service') {
-      let filterService = [... this.allBookingOrders];
-      filterService = filterService.filter(x => x.name === this.filterOption);
-      this.filterArray = filterService;
+    let filterService = [... this.allBookingOrders];
+    if (this.filterOption !== 'all')
+    {
+      switch (this.filterCategory) {
+        case 'service':
+          filterService = filterService.filter(x => x.name === this.filterOption);
+        case 'price':
+          filterService = filterService.sort((n1, n2) => this.filterOption === 'asc' ? n1.price - n2.price : n2.price - n1.price);
+        case 'meetingDate':
+          filterService = filterService.sort((d1, d2) =>
+          this.filterOption === 'asc' ?
+            (+new Date (d1.scheduledDate)) - (+new Date (d2.scheduledDate)) :
+            (+new Date (d2.scheduledDate)) - (+new Date (d1.scheduledDate)));
+        case 'purchasedDate':
+          filterService = filterService.sort((d1, d2) =>
+          this.filterOption === 'asc' ?
+            (+new Date (d1.purchasedDate)) - (+new Date (d2.purchasedDate)) :
+            (+new Date (d2.purchasedDate)) - (+new Date (d1.purchasedDate)));
+        default:
+          break;
+      }
     }
-
+    this.filterArray = filterService;
   }
 }
