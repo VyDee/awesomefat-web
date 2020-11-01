@@ -99,7 +99,7 @@ export class EditProfileComponent implements OnInit {
         );
         user.reauthenticateWithCredential(credential).then(() => {
           user.updatePassword(newPassword).then(() => {
-
+            this.userProfileForm.patchValue({oldPassword: newPassword});
             this.userAuthService.currentUser.password = newPassword;
             this.userAuthService.updateUsers(this.userAuthService.currentUser);
             this.notificationService.showSuccess('You have successfully updated your information and password');
