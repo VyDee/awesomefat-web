@@ -41,7 +41,7 @@ export class CartComponent implements OnInit, DoCheck {
         this.totalNumber = this.totalOrders.length;
 
         const priceArr = this.totalOrders.map(t => t.price);
-        this.totalPrice = priceArr.reduce((acc, cur) => acc + cur, 0);
+        this.totalPrice = priceArr.reduce((acc, cur) => Number(acc) + Number(cur), 0);
       });
     }
   }

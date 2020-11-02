@@ -113,8 +113,6 @@ export class EditProfileComponent implements OnInit {
         this.userAuthService.updateUsers(this.userAuthService.currentUser);
         this.notificationService.showSuccess('You have successfully updated your information');
       }
-
-
     }
   }
 }

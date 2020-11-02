@@ -84,7 +84,7 @@ export class AddCoachServiceComponent implements OnInit {
             this.service.imageUrl = url;
             this.coachingService.addCoachingService(this.service);
             this.notificationService.showSuccess('New service has been sucessfully added to the database');
-            this.resetServicerForm()
+            this.resetServicerForm();
           });
         })
       ).subscribe();
