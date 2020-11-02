@@ -33,6 +33,6 @@ export class RefundService {
   addRefund(refund: OrderRefund) {
     const id = this.afs.createId();
     refund.refundId = id;
-    this.refundOrdersCollection.add(refund);
+    this.refundOrdersCollection.doc(id).set(refund);
   }
 }

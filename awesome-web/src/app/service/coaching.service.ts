@@ -1,4 +1,4 @@
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { CoachingServiceInterface } from './../shared/product-info';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class CoachingService {
   coachingServiceCollection: AngularFirestoreCollection<CoachingServiceInterface>;
   coachingService: Observable<CoachingServiceInterface[]>;
+  coachingServiceDoc: AngularFirestoreDocument<CoachingServiceInterface>;
 
   coachingServiceArray: CoachingServiceInterface[];
 
@@ -35,7 +36,13 @@ export class CoachingService {
   }
 
   addCoachingService(coachingService) {
-    coachingService.id = Math.floor(Math.random() * Math.floor(100));
-    this.coachingServiceCollection.add(coachingService);
+    const id = Math.floor(Math.random() * Math.floor(100));
+    coachingService.id = id;
+    this.coachingServiceCollection.doc(id.toString()).set(coachingService);
+  }
+  updateCoachingService(coachingService) {
+    const id = coachingService.id.toString();
+    this.coachingServiceDoc = this.afs.doc(`coaching-service/${id}`);
+    this.coachingServiceDoc.update(coachingService);
   }
 }

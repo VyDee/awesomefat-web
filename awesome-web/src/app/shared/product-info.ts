@@ -5,7 +5,7 @@ export interface ExampleProduct {
 export interface CoachingServiceInterface {
   name: string;
   detail: string;
-  imageUrl: string;
+  imageUrl?: string;
   id: number;
   price: number;
 }

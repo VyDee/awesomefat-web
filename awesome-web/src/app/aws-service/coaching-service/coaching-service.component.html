@@ -1,29 +1,100 @@
-<div class="shopping-cart">
-  <div>
-    <button [routerLink]="['/services/coaching', 1,'summary']">
-      <i class="fa">&#xf07a;</i>
-      <span class='badge badge-warning' id='lblCartCount'> {{totalOrderNumber}} </span>
-    </button>
-  </div>
-</div>
-<div class="aws-coaching-container aws-coaching-header">
-  <p>Coaching and Consulting Service</p>
-</div>
-<div class="aws-coaching-body">
-  <div class="container service-item" *ngFor="let service of coachingServiceArr">
-    <div class="row">
-      <div class="col-sm-2">
-        <img src="{{service.imageUrl}}">
-      </div>
-      <div class="col-sm">
-        <h5>{{service.name}}</h5>
-        <p>{{service.detail}}</p>
-      </div>
-    </div>
-    <div class="aws-button-center-position">
-      <a [routerLink] = "['/services/coaching',service.id]">Book Now</a>
+<div *ngIf="!!userAuthService.currentUser">
+  <div class="shopping-cart" *ngIf="userAuthService.currentUser.role !== 'admin'">
+    <div>
+      <button [routerLink]="['/services/coaching', 1,'summary']">
+        <i class="fa">&#xf07a;</i>
+        <span class='badge badge-warning' id='lblCartCount'> {{totalOrderNumber}} </span>
+      </button>
     </div>
   </div>
+
+  <div class="aws-coaching-container aws-coaching-header">
+    <p>Coaching and Consulting Service</p>
+  </div>
+  <div class="aws-coaching-body">
+    <div class="container service-item" *ngFor="let service of coachingServiceArr">
+      <div class="row">
+        <div class="col-sm-2">
+          <img src="{{service.imageUrl}}">
+        </div>
+        <div class="col-sm">
+          <h5>{{service.name}}</h5>
+          <p><b>Price:</b> {{service.price}}</p>
+          <p>{{service.detail}}</p>
+        </div>
+      </div>
+      <div class="aws-button-center-position">
+        <a [routerLink] = "['/services/coaching',service.id]" *ngIf="userAuthService.currentUser.role !== 'admin'">Book Now</a>
+        <button type="button" class="btn btn-secondary text-center mr-3" *ngIf="userAuthService.currentUser.role === 'admin'"
+              data-target="#editServiceModal" data-toggle="modal" (click)="passServiceInfoForModal(service)">
+              Edit service
+        </button>
+      </div>
+
+      <!--Edit service-->
+      <div class="modal fade bd-example-modal-lg" id="editServiceModal" tabindex="-1" role="dialog" aria-labelledby="editServiceModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit service </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body edit-service-body">
+              <form [formGroup]="editServiceForm">
+                <div class="form-group">
+                  <label for="name" class="col-form-label col-sm-2">Service name</label>
+                  <div class="col-12">
+                    <input type="text" id="name" name="name" class="form-control" formControlName="name" minlength="5"
+                    [ngClass]="{'is-invalid': isInvalidControl('name')}">
+                    <div class="invalid-feedback" *ngIf="isInvalidControl('name')">
+                      <div *ngIf="editServiceForm.controls['name'].errors.required">
+                        Required
+                      </div>
+                      <div *ngIf="editServiceForm.controls['name'].errors.minlength">
+                        Name needs to be at least 5 characters
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="price" class="col-form-label col-sm-2">Price</label>
+                  <div class="col-12">
+                    <input type="text" id="price" name="price" class="form-control" formControlName="price"
+                    [ngClass]="{'is-invalid': isInvalidControl('price')}">
+                    <div class="invalid-feedback" *ngIf="isInvalidControl('price')">
+                      <div *ngIf="editServiceForm.controls['price'].errors.required">
+                        Required
+                      </div>
+                      <div *ngIf="editServiceForm.controls['price'].errors.pattern">
+                        Please enter a number
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="detail" class="col-form-label col-sm-2">Detail</label>
+                  <div class="col-12">
+                    <textarea class="form-control" id="detail" rows="5" name="detail" formControlName="detail"
+                    [ngClass]="{'is-invalid': isInvalidControl('detail')}" maxlength="500"></textarea>
+                    <div class="invalid-feedback" *ngIf="isInvalidControl('detail')">
+                      Required
+                    </div>
+                  </div>
+                </div>
+                <div class="float-right">
+                  <button type="submit" class="btn btn-primary mr-3" [attr.data-dismiss]="editServiceForm.valid ? 'modal' : null"
+                  (click)="onUpdate(editServiceForm.value)">
+                    Update
+                </button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
