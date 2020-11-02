@@ -45,4 +45,8 @@ export class CoachingService {
     this.coachingServiceDoc = this.afs.doc(`coaching-service/${id}`);
     this.coachingServiceDoc.update(coachingService);
   }
+  deleteCoachingService(coachingServiceId) {
+    this.coachingServiceDoc = this.afs.doc(`coaching-service/${coachingServiceId}`);
+    this.coachingServiceDoc.delete();
+  }
 }

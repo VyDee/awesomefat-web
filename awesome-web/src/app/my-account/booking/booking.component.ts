@@ -102,7 +102,7 @@ export class BookingComponent implements OnInit {
       status: 'Refund'
     };
     this.refundService.addRefund(refundOrder);
-    this.shoppingService.deleteOrder(booking);
+    this.shoppingService.deleteOrder(booking.orderId);
   }
 
   passBookingInfoForModal(booking) {
@@ -144,10 +144,13 @@ export class BookingComponent implements OnInit {
         case 'price':
           filterService = filterService.sort((n1, n2) => this.filterOption === 'asc' ? n1.price - n2.price : n2.price - n1.price);
         case 'meetingDate':
-          filterService = filterService.sort((d1, d2) =>
+          const scheduledMeetingArray = filterService.filter(x => x.scheduledDate !== '');
+          const notSchefuledArray = filterService.filter(x => x.scheduledDate === '');
+          filterService = scheduledMeetingArray.sort((d1, d2) =>
           this.filterOption === 'asc' ?
             (+new Date (d1.scheduledDate)) - (+new Date (d2.scheduledDate)) :
             (+new Date (d2.scheduledDate)) - (+new Date (d1.scheduledDate)));
+          filterService = scheduledMeetingArray.concat(notSchefuledArray);
         case 'purchasedDate':
           filterService = filterService.sort((d1, d2) =>
           this.filterOption === 'asc' ?

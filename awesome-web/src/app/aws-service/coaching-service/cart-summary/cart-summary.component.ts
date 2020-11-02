@@ -25,7 +25,7 @@ export class CartSummaryComponent implements OnInit {
   }
 
   deleteOrder(order: UserOrder){
-    this.shoppingService.deleteOrder(order);
+    this.shoppingService.deleteOrder(order.orderId);
     this.cart.totalNumber = this.ordersArray.length;
   }
 

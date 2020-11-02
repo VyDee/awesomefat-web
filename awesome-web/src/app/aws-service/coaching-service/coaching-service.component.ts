@@ -90,6 +90,9 @@ export class CoachingServiceComponent implements OnInit {
     this.notificationService.showSuccess('success');
   }
 
+  deleterService() {
+    this.coachingService.deleteCoachingService(this.currentServiceId);
+  }
 
 
 }

@@ -39,12 +39,12 @@ export class ShoppingService {
      this.notificationService.showSuccess("Your order has succesfully added to the cart")
    }
 
-   deleteOrder(order: UserOrder) {
-     this.shoppingOrderDoc = this.afs.doc(`orders/${order.orderId}`);
+   deleteOrder(orderId) {
+     this.shoppingOrderDoc = this.afs.doc(`orders/${orderId}`);
      this.shoppingOrderDoc.delete();
    }
 
-   updateOrder(order: UserOrder) {
+   updateOrder(order) {
     this.shoppingOrderDoc = this.afs.doc(`orders/${order.orderId}`);
     this.shoppingOrderDoc.update(order);
    }

@@ -63,11 +63,11 @@
       </div>
       <div *ngIf="userAuthService.currentUser.role === 'admin'">
         <div class="col-md-12 text-center">
-          <button type="button" class="btn btn-secondary text-center mr-3" *ngIf="userAuthService.currentUser.role === 'admin'"
+          <button type="button" class="btn btn-secondary text-center mr-3"
             data-target="#updateMeetingModal" data-toggle="modal" (click)="passBookingInfoForModal(booking)">
             Update Meeting Time
           </button>
-          <button type="button" class="btn btn-outline-danger text-center" *ngIf="userAuthService.currentUser.role === 'admin'"
+          <button type="button" class="btn btn-outline-danger text-center"
             data-target="#deleteSessionModal" data-toggle="modal" (click)="passBookingInfoForModal(booking)">
             Delete Session
           </button>
@@ -77,13 +77,13 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete a session</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete a session?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                Click "Delete if you would like to delete a section. Otherwise, please click Close to cancel the message"
+                Click "Delete if you would like to delete a section. Otherwise, please click Close to cancel"
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

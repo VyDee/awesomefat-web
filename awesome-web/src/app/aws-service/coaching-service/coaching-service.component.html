@@ -25,10 +25,17 @@
       </div>
       <div class="aws-button-center-position">
         <a [routerLink] = "['/services/coaching',service.id]" *ngIf="userAuthService.currentUser.role !== 'admin'">Book Now</a>
-        <button type="button" class="btn btn-secondary text-center mr-3" *ngIf="userAuthService.currentUser.role === 'admin'"
+        <div *ngIf="userAuthService.currentUser.role === 'admin'">
+          <button type="button" class="btn btn-secondary text-center mr-3"
               data-target="#editServiceModal" data-toggle="modal" (click)="passServiceInfoForModal(service)">
               Edit service
-        </button>
+          </button>
+          <button type="button" class="btn btn-outline-danger text-center mr-3"
+                data-target="#deleteServiceModal" data-toggle="modal" (click)="passServiceInfoForModal(service)">
+                Delete service
+          </button>
+        </div>
+
       </div>
 
       <!--Edit service-->
@@ -91,6 +98,27 @@
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete Service Modal -->
+      <div class="modal fade" id="deleteServiceModal" tabindex="-1" role="dialog" aria-labelledby="deleteServiceModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete this service?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Click "Delete if you would like to delete the current service. Otherwise, please click Close to cancel."
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-danger" (click)="deleterService()" data-dismiss="modal">Delete</button>
             </div>
           </div>
         </div>

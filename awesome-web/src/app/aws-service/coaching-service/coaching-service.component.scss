@@ -45,9 +45,6 @@
   border: 1px solid black;
   border-radius: 15px;
   margin-bottom: 4%;
-  &:hover, &:active, &:focus {
-    background-color: darken(#F2F2F2, 5%);
-  }
   img {
     width: 100%;
   }
