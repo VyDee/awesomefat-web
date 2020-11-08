@@ -29,3 +29,24 @@
         }
     }
 }
+
+.aws-footer {
+  background-color: #403933;
+  color: white;
+  padding: 3% 5%;
+  h4 {
+    padding-bottom: 3%;
+  }
+  i {
+    margin-right: 10px;
+  }
+}
+
+.vertical-line {
+  border-right: 2px solid white;
+  height: 165px;
+}
+
+.aws-custom-footer-padding {
+  padding-left: 5%;
+}
