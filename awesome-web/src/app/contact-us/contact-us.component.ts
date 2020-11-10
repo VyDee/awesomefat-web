@@ -90,7 +90,7 @@ export class ContactUsComponent implements OnInit {
       userMessage: values.userMessage
     };
 
-    this.messageService.sendEmail('http://localhost:3000/sendmail', request).subscribe(
+    this.messageService.sendEmail('http://localhost:3000/send-mail', request).subscribe(
       data => {
         console.log("messageService.sendEmail ", data);
       },

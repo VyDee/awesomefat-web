@@ -11,7 +11,7 @@ app.use(cors({ origin: "*"}));
 //Body Parser Middleware
 app.use(bodyParser.json())
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("The server started on port 3000!!!");
 })
 
