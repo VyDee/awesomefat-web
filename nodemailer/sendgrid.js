@@ -1,3 +1,5 @@
+const apiKey = process.env.SENDGRID_API_KEY;
+
 const Sendgrid = require('sendgrid')(process.env.SENDGRID_API_KEY);
 require('dotenv').config()
 
