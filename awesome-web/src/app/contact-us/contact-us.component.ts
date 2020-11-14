@@ -82,25 +82,30 @@ export class ContactUsComponent implements OnInit {
     }
 
     const values = this.userForm.value;
-    const request = {
+    const userRequest = {
       firstName: values.firstName,
       lastName: values.lastName,
       companyName: values.companyName,
       userEmail: values.userEmail,
       service: values.service,
       userMessage: values.userMessage,
-      templateName: 'contact-us'
+      templateName: 'owner-contact-us'
     };
+    const userRequestCopy = {...userRequest};
+    userRequestCopy.templateName = 'user-contact-us';
 
-    this.messageService.sendEmail(`http://localhost:3000/send-mail`, request).subscribe(
-      data => {
-      },
+    this.messageService.sendEmail(`http://localhost:3000/send-mail`, userRequest).subscribe(
       err => {
         console.log(err);
       }, () => {
         window.scroll(0, 0);
         this.notificationService.showSuccess('Email has been successfully sent');
         this.resetUserForm();
+      }
+    );
+    this.messageService.sendEmail(`http://localhost:3000/send-mail`, userRequestCopy).subscribe(
+      err => {
+        console.log(err);
       }
     );
   }

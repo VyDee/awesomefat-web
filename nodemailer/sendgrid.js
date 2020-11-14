@@ -23,11 +23,14 @@ app.post('/send-mail', function (req, res) {
   const templateName = `${req.body.templateName}`;
   // console.log(templateName);
   switch(templateName) {
-    case "contact-us":
-      //send copy email to customer
+    case "user-contact-us":
+      console.log(templateName);
+      //send contact-us copy email to customer
       request.body = customerContactRequestPersonalization(req);
-      sendMail(request);
-      //send email to owner
+      break;
+    case "owner-contact-us":
+      console.log(templateName);
+      //send contact-us email to owner
       request.body = ownerContactRequestPersonalization(req);
       break;
   }
