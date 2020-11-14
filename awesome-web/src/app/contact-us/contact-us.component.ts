@@ -59,6 +59,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   private resetUserForm() {
+    this.submitted = false;
     this.userForm.get('firstName').reset();
     this.userForm.get('lastName').reset();
     this.userForm.get('companyName').reset();
@@ -87,18 +88,18 @@ export class ContactUsComponent implements OnInit {
       companyName: values.companyName,
       userEmail: values.userEmail,
       service: values.service,
-      userMessage: values.userMessage
+      userMessage: values.userMessage,
+      templateName: 'contact-us'
     };
 
-    this.messageService.sendEmail('http://localhost:3000/send-mail', request).subscribe(
+    this.messageService.sendEmail(`http://localhost:3000/send-mail`, request).subscribe(
       data => {
-        console.log("messageService.sendEmail ", data);
       },
       err => {
         console.log(err);
       }, () => {
         window.scroll(0, 0);
-        this.notificationService.showSuccess("Email has been successfully sent");
+        this.notificationService.showSuccess('Email has been successfully sent');
         this.resetUserForm();
       }
     );

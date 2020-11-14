@@ -102,8 +102,8 @@ export class LogInComponent implements OnInit {
         };
         this.userAuthService.addUsers(newUser);
         this.notificationService.showSuccess('The user has been created. Please sign in.');
-        this.resetSignUpForm();
         this.signUpSubmitted = false;
+        this.resetSignUpForm();
         }, (error) => {
           if (error.code ='auth/email-already-in-use'){
             this.existedEmail = true;

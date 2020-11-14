@@ -8,6 +8,6 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   sendEmail(url, data) {
-    return this.http.post(url, data);
+    return this.http.post(url, data, {responseType: 'text'});
   }
 }

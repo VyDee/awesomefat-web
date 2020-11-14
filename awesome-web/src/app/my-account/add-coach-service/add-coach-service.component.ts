@@ -94,6 +94,7 @@ export class AddCoachServiceComponent implements OnInit {
   }
 
   private resetServicerForm() {
+    this.submitted = false;
     this.addServiceForm.get('serviceName').reset();
     this.addServiceForm.get('serviceDetail').reset();
     this.addServiceForm.get('imageUrl').reset();
