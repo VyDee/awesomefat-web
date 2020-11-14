@@ -1,5 +1,6 @@
-const Sendgrid = require('sendgrid')(process.env.SENDGRID_API_KEY);
 require('dotenv').config()
+const apiKey = process.env.SENDGRID_API_KEY;
+const Sendgrid = require('sendgrid')(apiKey);
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -17,17 +18,17 @@ app.post('/send-mail', function (req, res) {
     "method": "POST",
     "path": "/v3/mail/send",
     body: {
-      template_id:"d-2b31c3de7ee44d1ca3027c5b7d8f5cf7",
+      template_id:"d-eeec45afa891494384ea7798f258b5b5",
       personalizations: [
           {
               to: [{ email: 'vy.duong@cuw.edu' }],
               subject: 'Sendgrid test email from Node.js',
               dynamic_template_data: {
-                name:"Vy"
+                name:"Vy Test"
               },
           }
       ],
-      from: { email: 'vy.duong@cuw.edu' },
+      from: { email: 'veedee.2509@gmail.com' },
     }
   });
   sendMail(request);
