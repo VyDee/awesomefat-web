@@ -32,7 +32,7 @@ export class CoachingDetailComponent implements OnInit {
 
   addToCart(){
     if (!this.userAuthService.isAuthenticated()){
-      this.notificationService.showInfo('Please log in before adding to the cart');
+      this.notificationService.showInfo('Please sign up and log in before adding to the cart');
     }
     else {
       const order: UserOrder = {
