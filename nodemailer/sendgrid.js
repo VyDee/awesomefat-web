@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 const app = express();
 var cors = require('cors');
 
+const senderEmail = 'veedee.2509@gmail.com';
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,20 +23,26 @@ app.post('/send-mail', function (req, res) {
   });
   
   const templateName = `${req.body.templateName}`;
-  // console.log(templateName);
+  const requestContent = req.body;
+
   switch(templateName) {
     case "user-contact-us":
-      console.log(templateName);
       //send contact-us copy email to customer
-      request.body = customerContactRequestPersonalization(req);
+      request.body = customerContactRequestPersonalization(requestContent);
       break;
     case "owner-contact-us":
-      console.log(templateName);
       //send contact-us email to owner
-      request.body = ownerContactRequestPersonalization(req);
+      request.body = ownerContactRequestPersonalization(requestContent);
       break;
+    case "sign-up":
+      request.body = signUpPersonalization(requestContent);
+      break
+    case "booking-time-update":
+      request.body = bookingInfoUpdatePersonalization(requestContent);
+      break
   }
 
+  console.log(request);
   sendMail(request);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -66,18 +74,17 @@ function customerContactRequestPersonalization(request) {
 
     personalizations: [
         {
-            to: [{ email: `${request.body.userEmail}` }],
-            subject: 'Sendgrid test email from Node.js',
+            to: [{ email: `${request.userEmail}` }],
             dynamic_template_data: {
-              name: `${request.body.firstName}, ${request.body.lastName}`,
-              companyName:`${request.body.companyName}`,
-              email: `${request.body.userEmail}`,
-              service: `${request.body.service}`,
-              message: `${request.body.userMessage}`
+              name: `${request.firstName}, ${request.lastName}`,
+              companyName:`${request.companyName}`,
+              email: `${request.userEmail}`,
+              service: `${request.service}`,
+              message: `${request.userMessage}`
             },
         }
     ],
-      "from": { email: 'veedee.2509@gmail.com' },
+      "from": { email: senderEmail },
   }
   return contactBody;
 }
@@ -89,17 +96,51 @@ function ownerContactRequestPersonalization(request) {
     personalizations: [
         {
             to: [{ email: 'veedee.2509@gmail.com' }],
-            subject: 'Sendgrid test email from Node.js',
             dynamic_template_data: {
-              name: `${request.body.firstName}, ${request.body.lastName}`,
-              companyName:`${request.body.companyName}`,
-              email: `${request.body.userEmail}`,
-              service: `${request.body.service}`,
-              message: `${request.body.userMessage}`
+              name: `${request.firstName}, ${request.lastName}`,
+              companyName:`${request.companyName}`,
+              email: `${request.userEmail}`,
+              service: `${request.service}`,
+              message: `${request.userMessage}`
             },
         }
     ],
-      "from": { email: 'veedee.2509@gmail.com' },
+      "from": { email: senderEmail },
+  }
+  return contactBody;
+}
+
+function signUpPersonalization(request) {
+  const contactBody = {
+    template_id:'d-c3d0e8a8467645759d03d7e5a778dd0b',
+    personalizations: [
+        {
+            to: [{ email: `${request.userEmail}` }],
+            dynamic_template_data: {
+              name: `${request.firstName} ${request.lastName}`,
+            },
+        }
+    ],
+      "from": { email: senderEmail },
+  }
+  return contactBody;
+}
+
+function bookingInfoUpdatePersonalization(request) {
+  const contactBody = {
+    template_id:'d-9f1614396d7b496da8420a649f53ae45',
+    personalizations: [
+        {
+            to: [{ email: `${request.userEmail}` }],
+            dynamic_template_data: {
+              name: `${request.name}`,
+              service: `${request.service}`,
+              meetingTime: `${request.meetingTime}`,
+              meetingDate: `${request.meetingDate}`,
+            },
+        }
+    ],
+      "from": { email: senderEmail },
   }
   return contactBody;
 }

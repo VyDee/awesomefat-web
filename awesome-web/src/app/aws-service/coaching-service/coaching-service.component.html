@@ -1,5 +1,5 @@
-<div *ngIf="!!userAuthService.currentUser">
-  <div class="shopping-cart" *ngIf="userAuthService.currentUser.role !== 'admin'">
+<div>
+  <div class="shopping-cart" *ngIf="!!userAuthService.currentUser && userAuthService.currentUser.role !== 'admin'">
     <div>
       <button [routerLink]="['/services/coaching', 1,'summary']">
         <i class="fa">&#xf07a;</i>
@@ -24,8 +24,11 @@
         </div>
       </div>
       <div class="aws-button-center-position">
-        <a [routerLink] = "['/services/coaching',service.id]" *ngIf="userAuthService.currentUser.role !== 'admin'">Book Now</a>
-        <div *ngIf="userAuthService.currentUser.role === 'admin'">
+        <a [routerLink] = "['/services/coaching',service.id]"
+        *ngIf="(!!userAuthService.currentUser && userAuthService.currentUser.role !== 'admin') || !!userAuthService.currentUser === false">
+          Book Now
+        </a>
+        <div *ngIf="!!userAuthService.currentUser && userAuthService.currentUser.role === 'admin'">
           <button type="button" class="btn btn-secondary text-center mr-3"
               data-target="#editServiceModal" data-toggle="modal" (click)="passServiceInfoForModal(service)">
               Edit service

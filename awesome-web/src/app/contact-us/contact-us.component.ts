@@ -94,7 +94,8 @@ export class ContactUsComponent implements OnInit {
     const userRequestCopy = {...userRequest};
     userRequestCopy.templateName = 'user-contact-us';
 
-    this.messageService.sendEmail(`http://localhost:3000/send-mail`, userRequest).subscribe(
+    this.messageService.sendEmail(userRequest).subscribe(
+      data => {},
       err => {
         console.log(err);
       }, () => {
@@ -103,7 +104,7 @@ export class ContactUsComponent implements OnInit {
         this.resetUserForm();
       }
     );
-    this.messageService.sendEmail(`http://localhost:3000/send-mail`, userRequestCopy).subscribe(
+    this.messageService.sendEmail(userRequestCopy).subscribe(
       err => {
         console.log(err);
       }

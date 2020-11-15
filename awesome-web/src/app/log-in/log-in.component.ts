@@ -1,3 +1,4 @@
+import { MessageService } from './../service/message.service';
 import { UserAuthService } from '../service/user-auth.service';
 import { StringValidator } from './../validators/string.validator';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -36,7 +37,8 @@ export class LogInComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth: AngularFireAuth,
     private userAuthService: UserAuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -101,11 +103,23 @@ export class LogInComponent implements OnInit {
           userUID: user.user.uid
         };
         this.userAuthService.addUsers(newUser);
-        this.notificationService.showSuccess('The user has been created. Please sign in.');
+        this.notificationService.showSuccess('The user has been created. An confirm email has been sent to your email. Please sign in tp continue.');
+
+        const request = {
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          userEmail: newUser.userEmail,
+          templateName: 'sign-up'
+        };
+        this.messageService.sendEmail(request).subscribe(
+          err => {
+            console.log(err);
+          }
+        );
         this.signUpSubmitted = false;
         this.resetSignUpForm();
         }, (error) => {
-          if (error.code ='auth/email-already-in-use'){
+          if (error.code = 'auth/email-already-in-use'){
             this.existedEmail = true;
           }
         });

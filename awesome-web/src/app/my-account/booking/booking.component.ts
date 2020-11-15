@@ -1,3 +1,4 @@
+import { MessageService } from './../../service/message.service';
 import { filter } from 'rxjs/operators';
 import { CoachingService } from './../../service/coaching.service';
 import { NotificationService } from './../../service/notification.service';
@@ -6,7 +7,7 @@ import { OrderRefund } from './../../shared/order-refund';
 import { RefundService } from './../../service/refund.service';
 import { UserInfo } from './../../shared/user-info';
 import { UserOrder } from './../../shared/order-info';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, DoCheck } from '@angular/core';
 import { ShoppingService } from 'src/app/service/shopping.service';
 import { UserAuthService } from 'src/app/service/user-auth.service';
 import { DatePipe } from '@angular/common';
@@ -16,7 +17,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss']
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit, DoCheck {
   allBookingOrders: UserOrder[] = [];
   usersArray: UserInfo[] = [];
   userUID: string;
@@ -40,7 +41,8 @@ export class BookingComponent implements OnInit {
     private refundService: RefundService,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
-    private coachingService: CoachingService
+    private coachingService: CoachingService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +53,12 @@ export class BookingComponent implements OnInit {
     this.coachingService.getCoachingServices().subscribe((services) => {
       this.serviceTypeArr = services;
     });
+  }
+
+  ngDoCheck() {
+    this.meetingDate = this.updateSessionForm.controls.meetingDate.value;
+    this.meetingTime = this.updateSessionForm.controls.meetingTime.value;
+
   }
 
   private createForm() {
@@ -84,7 +92,7 @@ export class BookingComponent implements OnInit {
 
   getBuyerName(userUID): string {
     const buyers = this.usersArray.filter(x => x.userUID === userUID);
-    if (buyers) {
+    if (buyers[0]) {
       return buyers[0].firstName + ' ' + buyers[0].lastName;
     } else {
       return '';
@@ -117,12 +125,31 @@ export class BookingComponent implements OnInit {
 
   updateSessionInfo() {
     const booking = this.allBookingOrders.filter(x => x.orderId === this.currentOrderId)[0];
+    const buyers = this.usersArray.filter(x => x.userUID === booking.userUID);
     booking.time = this.updateSessionForm.controls.meetingTime.value;
     booking.scheduledDate = this.updateSessionForm.controls.meetingDate.value;
-
     this.shoppingService.updateOrder(booking);
-    this.notificationService.showSuccess('The meeting time and date has been successfully updated');
 
+    const request = {
+      userEmail: buyers[0]?.userEmail,
+      name: buyers[0]?.firstName,
+      service: booking.name,
+      meetingTime: booking.time,
+      meetingDate: booking.scheduledDate,
+      templateName: 'booking-time-update'
+    };
+    this.messageService.sendEmail(request).subscribe(
+      data => {},
+      err => {
+        console.log(err);
+      }, () => {
+        this.notificationService.showSuccess('The meeting time and date has been successfully updated. An email has been sent to the user for the updated information');
+      }
+    );
+  }
+
+  isNotNullOrEmpty(value) {
+    return value !== null && value !== ''  && value !== undefined;
   }
 
   setFilterCategory(event: any) {

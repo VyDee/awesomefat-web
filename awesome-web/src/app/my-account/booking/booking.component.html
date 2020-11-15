@@ -118,7 +118,11 @@
                     </div>
                   </div>
                   <div class="float-right">
-                    <button type="button" class="btn btn-primary mr-3" data-dismiss="modal" (click)="updateSessionInfo()">Update</button>
+                    <button type="button" class="btn btn-primary mr-3" data-dismiss="modal"
+                    [attr.disabled]="(isNotNullOrEmpty(meetingDate) && isNotNullOrEmpty(meetingTime))? null : true"
+                    (click)="updateSessionInfo()">
+                      Send user updated time
+                    </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
                 </form>

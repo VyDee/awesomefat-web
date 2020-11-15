@@ -1,6 +1,6 @@
 <div *ngIf="userAuthService.currentUser">
   <div class="aws-vertical-navbar">
-    <img src="https://cdn.shopify.com/s/files/1/0231/6137/2752/files/bt21-cooky_b68bb716-f427-43c4-9f0d-0e0ad839c0f9_1600x.jpg?v=1563920577" alt="Avatar">
+    <img src="../../assets/images/kooky-profile.jpg" alt="Avatar">
     <h5>{{userAuthService.currentUser.firstName}}, {{userAuthService.currentUser.lastName}}</h5>
       <div class="list-group">
           <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/booking']">
