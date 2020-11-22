@@ -1,0 +1,31 @@
+<div class="aws-content">
+  <h2>Refunded orders</h2>
+
+  <div class="md-form mt-4 col">
+    <input class="form-control" type="text" placeholder="Search by customer name"
+      aria-label="Search" [(ngModel)] = customerString>
+  </div>
+
+  <div class="aws-refunded-body">
+    <div class="container service-item" *ngFor="let order of filterArray">
+      <div class="row">
+        <div class="col-sm-2">
+          <img src="{{order.imageUrl}}">
+        </div>
+        <div class="col-sm">
+          <h5>{{order.name}}</h5>
+          <div class="row">
+            <div class="col-sm-5">
+              <p><b>Order Id: </b> {{order.orderId}}</p>
+              <p><b>Purchased date:</b> {{order.purchasedDate}}</p>
+            </div>
+            <div class="col-sm-5">
+              <p><b>Price:</b> {{order.price}}</p>
+              <p *ngIf="userAuthService.currentUser.role === 'admin'"><b>Purchased By: </b>{{order.customerName}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

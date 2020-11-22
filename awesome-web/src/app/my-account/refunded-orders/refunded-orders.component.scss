@@ -1,0 +1,41 @@
+.aws-content {
+  h2 {
+    font-weight: 600;
+    margin: 3% 0% 0% 0%;
+  }
+}
+.aws-refunded-body {
+  widows: 100%;
+  padding: 3% 5%;
+}
+
+.booking-guide {
+  margin: 3% 0% 3% 0%;
+}
+
+.service-item{
+  padding: 3%;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-bottom: 4%;
+  p{
+    padding: 0%;
+  }
+  h5 {
+    margin-bottom: 3%;
+  }
+  img {
+    width: 100%;
+  }
+  // .aws-button-center-position {
+  //   a {
+  //     padding: 1%;
+  //     border-radius: 5px;
+  //     background-color: #333333;
+  //     font-size: 16px;
+  //     color: white;
+  //     font-weight: 600;
+  //     cursor: pointer;
+  //   }
+  // }
+}

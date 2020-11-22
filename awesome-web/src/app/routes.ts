@@ -1,3 +1,4 @@
+import { RefundedOrdersComponent } from './my-account/refunded-orders/refunded-orders.component';
 import { AddCoachServiceComponent } from './my-account/add-coach-service/add-coach-service.component';
 import { EditProfileComponent } from './my-account/edit-profile/edit-profile.component';
 import { BookingComponent } from './my-account/booking/booking.component';
@@ -34,7 +35,8 @@ export const appRoutes: Routes = [
         {path: '', component: BookingComponent},
         {path: 'booking', component: BookingComponent},
         {path: 'edit-profile', component: EditProfileComponent},
-        {path: 'add-coachService', component: AddCoachServiceComponent}
+        {path: 'add-coachService', component: AddCoachServiceComponent},
+        {path: 'refunded-orders', component:RefundedOrdersComponent}
       ]
     },
     { path: '', redirectTo: '/home', pathMatch: 'full'}

@@ -6,11 +6,15 @@
           <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/booking']">
             {{userAuthService.currentUser.role === "admin"? "All bookings" : "My bookings"}}
           </a>
+          <a class="list-group-item list-group-item-action" *ngIf='userAuthService.currentUser.role === "admin"'
+          [routerLink]="['/my-account/refunded-orders']">
+            Refunded orders
+          </a>
           <a class="list-group-item list-group-item-action" [routerLink]="['/my-account/edit-profile']">Edit my profile</a>
           <a class="list-group-item list-group-item-action" *ngIf='userAuthService.currentUser.role === "admin"'
           [routerLink]="['/my-account/add-coachService']">
             Add Coaching Service
-        </a>
+          </a>
       </div>
   </div>
   <router-outlet></router-outlet>

@@ -7,10 +7,9 @@ import { OrderRefund } from './../../shared/order-refund';
 import { RefundService } from './../../service/refund.service';
 import { UserInfo } from './../../shared/user-info';
 import { UserOrder } from './../../shared/order-info';
-import { Component, OnInit, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ShoppingService } from 'src/app/service/shopping.service';
 import { UserAuthService } from 'src/app/service/user-auth.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'booking',
@@ -139,10 +138,12 @@ export class BookingComponent implements OnInit, DoCheck {
     const buyers = this.usersArray.filter(x => x.userUID === booking.userUID);
     const refundOrder: OrderRefund = {
       userUID : booking.userUID,
+      name: booking.name,
       orderId: booking.orderId,
       imageUrl: booking.imageUrl,
       price: booking.price,
       purchasedDate: booking.purchasedDate,
+      customerName: buyers[0]?.firstName + ' ' + buyers[0]?.lastName,
       status: 'Refund'
     };
     const request = {
