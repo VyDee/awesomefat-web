@@ -39,7 +39,9 @@ app.post('/send-mail', function (req, res) {
       break
     case "booking-time-update":
       request.body = bookingInfoUpdatePersonalization(requestContent);
-      break
+      break;
+    case "delete-session":
+      request.body = deleteSessionPersonalization(requestContent);
   }
 
   console.log(request);
@@ -137,6 +139,28 @@ function bookingInfoUpdatePersonalization(request) {
               service: `${request.service}`,
               meetingTime: `${request.meetingTime}`,
               meetingDate: `${request.meetingDate}`,
+            },
+        }
+    ],
+      "from": { email: senderEmail },
+  }
+  return contactBody;
+}
+
+function deleteSessionPersonalization(request) {
+  const contactBody = {
+    template_id:'d-289042181b4b4abe8641af3d0f2ee5ab',
+    personalizations: [
+        {
+            to: [{ email: `${request.userEmail}` }],
+            dynamic_template_data: {
+              name: `${request.name}`,
+              service: `${request.service}`,
+              orderId:`${request.orderId}`,
+              meetingTime: `${request.meetingTime}`,
+              meetingDate: `${request.meetingDate}`,
+              price: `${request.price}`,
+              purchasedDate:`${request.purchasedDate}`
             },
         }
     ],

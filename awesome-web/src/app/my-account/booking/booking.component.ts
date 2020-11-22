@@ -99,20 +99,6 @@ export class BookingComponent implements OnInit, DoCheck {
     }
   }
 
-  deleteOrder(){
-    const booking = this.allBookingOrders.filter(x => x.orderId === this.currentOrderId)[0];
-    const refundOrder: OrderRefund = {
-      userUID : booking.userUID,
-      orderId: booking.orderId,
-      imageUrl: booking.imageUrl,
-      price: booking.price,
-      purchasedDate: booking.purchasedDate,
-      status: 'Refund'
-    };
-    this.refundService.addRefund(refundOrder);
-    this.shoppingService.deleteOrder(booking.orderId);
-  }
-
   passBookingInfoForModal(booking) {
     this.currentOrderId = booking.orderId;
     this.meetingTime = booking.time ? booking.time : '';
@@ -146,6 +132,41 @@ export class BookingComponent implements OnInit, DoCheck {
         this.notificationService.showSuccess('The meeting time and date has been successfully updated. An email has been sent to the user for the updated information');
       }
     );
+  }
+
+  deleteOrder(){
+    const booking = this.allBookingOrders.filter(x => x.orderId === this.currentOrderId)[0];
+    const buyers = this.usersArray.filter(x => x.userUID === booking.userUID);
+    const refundOrder: OrderRefund = {
+      userUID : booking.userUID,
+      orderId: booking.orderId,
+      imageUrl: booking.imageUrl,
+      price: booking.price,
+      purchasedDate: booking.purchasedDate,
+      status: 'Refund'
+    };
+    const request = {
+      userEmail: buyers[0]?.userEmail,
+      name: buyers[0]?.firstName,
+      service: booking.name,
+      orderId: booking.orderId,
+      meetingTime: booking.time,
+      meetingDate: booking.scheduledDate,
+      purchasedDate: booking.purchasedDate,
+      price: booking.price,
+      templateName: 'delete-session'
+    };
+    this.refundService.addRefund(refundOrder);
+    this.shoppingService.deleteOrder(booking.orderId);
+    this.messageService.sendEmail(request).subscribe(
+      data => {},
+      err => {
+        console.log(err);
+      }, () => {
+        this.notificationService.showInfo('The booking session has been cancelled. An email has been sent to the user for the cancellation.');
+      }
+    );
+
   }
 
   isNotNullOrEmpty(value) {
